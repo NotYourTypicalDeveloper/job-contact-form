@@ -10,6 +10,8 @@ import {
   Radio,
   RadioGroup,
   FormErrorMessage,
+  Text,
+  useToast,
 } from "@chakra-ui/react";
 import { sendContactForm } from "../lib/api";
 
@@ -17,7 +19,7 @@ const initValues = {
   name: "",
   email: "",
   telephone: "",
-  topic: "",
+  subject: "recruitment",
   message: "",
 };
 
@@ -37,7 +39,10 @@ const ContactForm = () => {
   //If user clicks out of input
   const [touched, setTouched] = useState({});
 
-  const { values, isLoading } = state;
+  //for the success message pop-up
+  const successMsg = useToast();
+
+  const { values, isLoading, error } = state;
 
   const onBlur = ({ target }) =>
     setTouched((prev) => ({ ...prev, [target.name]: true }));
@@ -53,17 +58,41 @@ const ContactForm = () => {
     }));
   };
 
+  // ON SUBMIT
   const onSubmit = async () => {
     setState((prev) => ({
       ...prev,
       isLoading: true,
     }));
-    await sendContactForm(values);
+    // if succeeds ✅
+    try {
+      await sendContactForm(values);
+      setTouched({});
+      setState(initState);
+      successMsg({
+        title: "Message sent! ✨",
+        status: "success",
+        duration: 2000,
+        position: "top",
+      });
+    } catch (error) {
+      // if error ❌
+      setState((prev) => ({
+        ...prev,
+        isLoading: false,
+        error: error.message,
+      }));
+    }
   };
 
   return (
     <Container>
       {/* ====== Form starts here ====== */}
+      {error && (
+        <Text color="red.300" my={4}>
+          ❌ {error} ❌
+        </Text>
+      )}
       <form>
         {/* ------- Name -------- */}
         <FormControl
@@ -129,30 +158,20 @@ const ContactForm = () => {
           <FormErrorMessage>required</FormErrorMessage>
         </FormControl>
 
-        {/* ------- Topic -------- */}
+        {/* ------- subject -------- */}
         <FormControl
-          id="topic"
+          id="subject"
           marginBottom="4"
-          isInvalid={touched.topic && !values.topic}
+          isInvalid={touched.subject && !values.subject}
           isRequired
         >
-          <FormLabel>Topic</FormLabel>
-          <RadioGroup name="topic" errorBorderColor="red.300" onBlur={onBlur}>
+          <FormLabel>subject</FormLabel>
+          <RadioGroup name="subject" errorBorderColor="red.300" onBlur={onBlur}>
             <Stack color="#e1e0f0" direction="row">
-              <Radio
-                value="recruitment"
-                checked="recruitment"
-                size="sm"
-                onChange={handleChange}
-              >
+              <Radio value="recruitment" size="sm" onChange={handleChange}>
                 Recruitment
               </Radio>
-              <Radio
-                value="other"
-                checked="other"
-                size="sm"
-                onChange={handleChange}
-              >
+              <Radio value="other" size="sm" onChange={handleChange}>
                 Other
               </Radio>
             </Stack>
@@ -164,7 +183,7 @@ const ContactForm = () => {
         <FormControl
           id="message"
           marginBottom="4"
-          isInvalid={touched.topic && !values.topic}
+          isInvalid={touched.subject && !values.subject}
           isRequired
         >
           <FormLabel>Message</FormLabel>
@@ -190,7 +209,7 @@ const ContactForm = () => {
             !values.name ||
             !values.email ||
             !values.telephone ||
-            !values.topic ||
+            !values.subject ||
             !values.message
           }
         >
