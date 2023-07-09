@@ -1,3 +1,13 @@
+## TO DO
+
+- add more fields
+- create separate components for :
+- single line input
+- text area input
+- radio button
+
+- create a context to hold the whole state
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

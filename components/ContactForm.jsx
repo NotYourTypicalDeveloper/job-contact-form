@@ -3,7 +3,6 @@ import {
   Container,
   FormControl,
   FormLabel,
-  Input,
   Button,
   Textarea,
   Stack,
@@ -14,12 +13,15 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { sendContactForm } from "../lib/api";
+import SingleLineInput from "./atoms/SingleLineInput";
+// import DropdownMenu from "./atoms/DropdownMenu";
 
 const initValues = {
   name: "",
   email: "",
   telephone: "",
   subject: "recruitment",
+  // workstyle: "",
   message: "",
 };
 
@@ -95,68 +97,43 @@ const ContactForm = () => {
       )}
       <form>
         {/* ------- Name -------- */}
-        <FormControl
-          id="name"
-          marginBottom="4"
+        <SingleLineInput
+          inputLabel="Name"
+          inputName="name"
+          inputType="text"
+          inputValue={values.name}
           isInvalid={touched.name && !values.name}
-          isRequired
-        >
-          <FormLabel>Name</FormLabel>
-          <Input
-            type="text"
-            name="name"
-            value={values.name}
-            sx={values.name !== "" && autoFillStyle}
-            errorBorderColor="red.300"
-            onChange={handleChange}
-            onBlur={onBlur}
-            _autofill={autoFillStyle}
-          />
-          <FormErrorMessage>required</FormErrorMessage>
-        </FormControl>
+          isRequired={true}
+          onChange={handleChange}
+          onBlur={onBlur}
+          autoFillStyle={autoFillStyle}
+        />
 
         {/* ------- E-mail -------- */}
-        <FormControl
-          id="email"
-          marginBottom="4"
+        <SingleLineInput
+          inputLabel="Email"
+          inputName="email"
+          inputType="email"
+          inputValue={values.email}
           isInvalid={touched.email && !values.email}
-          isRequired
-        >
-          <FormLabel>Email</FormLabel>
-          <Input
-            type="email"
-            name="email"
-            value={values.email}
-            sx={values.email !== "" && autoFillStyle}
-            onChange={handleChange}
-            errorBorderColor="red.300"
-            onBlur={onBlur}
-            _autofill={autoFillStyle}
-          />
-          <FormErrorMessage>required</FormErrorMessage>
-        </FormControl>
+          isRequired={true}
+          onChange={handleChange}
+          onBlur={onBlur}
+          autoFillStyle={autoFillStyle}
+        />
 
         {/* ------- Tel -------- */}
-
-        <FormControl
-          id="telephone"
-          marginBottom="4"
-          isInvalid={touched.telephone && !values.telephone}
-          isRequired
-        >
-          <FormLabel>Telephone</FormLabel>
-          <Input
-            type="tel"
-            name="telephone"
-            value={values.telephone}
-            sx={values.telephone !== "" && autoFillStyle}
-            onChange={handleChange}
-            onBlur={onBlur}
-            errorBorderColor="red.300"
-            _autofill={autoFillStyle}
-          />
-          <FormErrorMessage>required</FormErrorMessage>
-        </FormControl>
+        <SingleLineInput
+          inputLabel="Telephone"
+          inputName="telephone"
+          inputType="tel"
+          inputValue={values.telephone}
+          isInvalid={false}
+          isRequired={false}
+          onChange={handleChange}
+          onBlur={onBlur}
+          autoFillStyle={autoFillStyle}
+        />
 
         {/* ------- subject -------- */}
         <FormControl
@@ -179,6 +156,13 @@ const ContactForm = () => {
           <FormErrorMessage>required</FormErrorMessage>
         </FormControl>
 
+        {/* ------- Work style ------- */}
+        {/* <DropdownMenu
+          ddOptions={["fully remote", "hybrid", "100%on-site"]}
+          onSelect={handleChange}
+          ddLabelTitle="Work style"
+          ddName="work style"
+        /> */}
         {/* ------- Message -------- */}
         <FormControl
           id="message"
@@ -206,11 +190,7 @@ const ContactForm = () => {
           isLoading={isLoading}
           onClick={onSubmit}
           isDisabled={
-            !values.name ||
-            !values.email ||
-            !values.telephone ||
-            !values.subject ||
-            !values.message
+            !values.name || !values.email || !values.subject || !values.message
           }
         >
           Submit
