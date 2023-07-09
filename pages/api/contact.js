@@ -6,7 +6,7 @@ const CONTACT_MESSAGE_FIELDS = {
   name: "Name",
   email: "Email",
   telephone: "Telephone",
-  subject: "Subject",
+  contract: "Contract Type",
   message: "Message",
 };
 // generate the email content
@@ -32,7 +32,7 @@ const generateEmailContent = (data) => {
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const data = req.body;
-    if (!data || !data.name || !data.email || !data.subject || !data.message) {
+    if (!data || !data.name || !data.email || !data.contract || !data.message) {
       return res.status(400).send({ message: "Bad request" });
     }
     // ✅
@@ -40,7 +40,7 @@ const handler = async (req, res) => {
       await transporter.sendMail({
         ...mailOptions,
         ...generateEmailContent(data),
-        subject: `Message from ${data.name} | ${data.subject}`,
+        subject: `Message from ${data.name} | Rec form`,
       });
       return res.status(200).json({ success: true });
     } catch (err) {

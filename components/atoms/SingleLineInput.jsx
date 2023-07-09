@@ -34,7 +34,6 @@ const SingleLineInput = ({
         errorBorderColor="red.300"
         onChange={onChange}
         onBlur={onBlur}
-        _autofill={autoFillStyle}
       />
       <FormErrorMessage>required</FormErrorMessage>
     </FormControl>

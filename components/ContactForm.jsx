@@ -14,18 +14,23 @@ import {
 } from "@chakra-ui/react";
 import { sendContactForm } from "../lib/api";
 import SingleLineInput from "./atoms/SingleLineInput";
+import TextAreaInput from "./atoms/TextAreaInput";
+// import RadioButtons from "./atoms/RadioButtons";
 // import DropdownMenu from "./atoms/DropdownMenu";
 
+// Initial form values object
 const initValues = {
   name: "",
   email: "",
   telephone: "",
-  subject: "recruitment",
+  contract: "",
   // workstyle: "",
   message: "",
 };
 
 const initState = { values: initValues };
+// Subject options array
+// const contractOptions = ["Perm/Full-time", "Perm/Part-time", "Freelance"];
 
 // styling
 const autoFillStyle = {
@@ -51,6 +56,7 @@ const ContactForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log("CURRENT NAME AND VALUE ", name, value);
     setState((prev) => ({
       ...prev,
       values: {
@@ -108,7 +114,6 @@ const ContactForm = () => {
           onBlur={onBlur}
           autoFillStyle={autoFillStyle}
         />
-
         {/* ------- E-mail -------- */}
         <SingleLineInput
           inputLabel="Email"
@@ -121,7 +126,6 @@ const ContactForm = () => {
           onBlur={onBlur}
           autoFillStyle={autoFillStyle}
         />
-
         {/* ------- Tel -------- */}
         <SingleLineInput
           inputLabel="Telephone"
@@ -134,28 +138,43 @@ const ContactForm = () => {
           onBlur={onBlur}
           autoFillStyle={autoFillStyle}
         />
-
-        {/* ------- subject -------- */}
+        {/* ------- Contract type -------- */}
         <FormControl
-          id="subject"
+          id="contract"
           marginBottom="4"
-          isInvalid={touched.subject && !values.subject}
+          isInvalid={touched.contract && !values.contract}
           isRequired
         >
-          <FormLabel>subject</FormLabel>
-          <RadioGroup name="subject" errorBorderColor="red.300" onBlur={onBlur}>
+          <FormLabel>contract</FormLabel>
+          <RadioGroup
+            name="contract"
+            errorBorderColor="red.300"
+            onBlur={onBlur}
+          >
             <Stack color="#e1e0f0" direction="row">
-              <Radio value="recruitment" size="sm" onChange={handleChange}>
-                Recruitment
+              <Radio value="Perm/Full-time" size="sm" onChange={handleChange}>
+                Perm/Full-time
               </Radio>
-              <Radio value="other" size="sm" onChange={handleChange}>
-                Other
+              <Radio value="Perm/Part-time" size="sm" onChange={handleChange}>
+                Perm/Part-time
+              </Radio>
+              <Radio value="Freelance" size="sm" onChange={handleChange}>
+                Freelance
               </Radio>
             </Stack>
           </RadioGroup>
           <FormErrorMessage>required</FormErrorMessage>
         </FormControl>
 
+        {/* <RadioButtons
+          radioLabel="Contract Type"
+          radioName="contract"
+          radioOptions={contractOptions}
+          isInvalid={touched.contract && !values.contract}
+          isRequired={true}
+          onChange={handleChange}
+          onBlur={onBlur}
+        /> */}
         {/* ------- Work style ------- */}
         {/* <DropdownMenu
           ddOptions={["fully remote", "hybrid", "100%on-site"]}
@@ -164,7 +183,7 @@ const ContactForm = () => {
           ddName="work style"
         /> */}
         {/* ------- Message -------- */}
-        <FormControl
+        {/* <FormControl
           id="message"
           marginBottom="4"
           isInvalid={touched.subject && !values.subject}
@@ -182,15 +201,27 @@ const ContactForm = () => {
             _autofill={autoFillStyle}
           />
           <FormErrorMessage>required</FormErrorMessage>
-        </FormControl>
+        </FormControl> */}
 
+        <TextAreaInput
+          textALabel="Message"
+          textAName="message"
+          textAValue={values.message}
+          isInvalid={touched.message && !values.message}
+          isRequired={true}
+          onChange={handleChange}
+          onBlur={onBlur}
+          autoFillStyle={autoFillStyle}
+        />
+
+        {/* ============== SUBMIT button ============== */}
         <Button
           type="submit"
           colorScheme="blue"
           isLoading={isLoading}
           onClick={onSubmit}
           isDisabled={
-            !values.name || !values.email || !values.subject || !values.message
+            !values.name || !values.email || !values.contract || !values.message
           }
         >
           Submit
