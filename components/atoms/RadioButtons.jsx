@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -17,39 +17,53 @@ const RadioButtons = ({
   onChange,
   onBlur,
 }) => {
+  const [currentCheckedVal, setCurrentCheckedVal] = useState("");
+
   // Populating the radio buttons
   const radioButtonsElems = radioOptions.map((option) => {
-    const handleRadioChange = (e) => {
-      const selectedVal = e.target.value;
-      console.log(selectedVal);
-      onChange(selectedVal);
-    };
     return (
       <Radio
-        key={`${option}-radio-option`}
+        key={`radiooption${option}`}
         value={option}
-        _notLast={{ borderBottomWidth: "0.5px", borderBottomColor: "gray.100" }}
-        onClick={handleRadioChange}
+        onChange={(option) => {
+          setCurrentCheckedVal(option);
+        }}
       >
         {option}
       </Radio>
     );
   });
   return (
-    <FormControl
-      id={radioName}
-      marginBottom="4"
-      isInvalid={isInvalid}
-      isRequired={isRequired}
-    >
-      <FormLabel>{radioLabel}</FormLabel>
-      <RadioGroup name={radioName} errorBorderColor="red.300" onBlur={onBlur}>
-        <Stack color="#e1e0f0" direction="row">
-          {radioButtonsElems}
-        </Stack>
-      </RadioGroup>
-      <FormErrorMessage>required</FormErrorMessage>
-    </FormControl>
+    <>
+      <FormControl
+        id={radioName}
+        marginBottom="4"
+        isInvalid={isInvalid}
+        isRequired={isRequired}
+      >
+        <FormLabel>{radioLabel}</FormLabel>
+        <RadioGroup
+          name={`${radioName}`}
+          value={currentCheckedVal}
+          errorBorderColor="red.300"
+          onBlur={(currentCheckedVal) =>
+            onBlur({
+              target: { value: currentCheckedVal, name: `${radioName}` },
+            })
+          }
+          onChange={(currentCheckedVal) =>
+            onChange({
+              target: { value: currentCheckedVal, name: `${radioName}` },
+            })
+          }
+        >
+          <Stack color="#e1e0f0" direction="row">
+            {radioButtonsElems}
+          </Stack>
+        </RadioGroup>
+        <FormErrorMessage>required</FormErrorMessage>
+      </FormControl>
+    </>
   );
 };
 

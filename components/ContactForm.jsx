@@ -15,7 +15,7 @@ import {
 import { sendContactForm } from "../lib/api";
 import SingleLineInput from "./atoms/SingleLineInput";
 import TextAreaInput from "./atoms/TextAreaInput";
-// import RadioButtons from "./atoms/RadioButtons";
+import RadioButtons from "./atoms/RadioButtons";
 // import DropdownMenu from "./atoms/DropdownMenu";
 
 // Initial form values object
@@ -30,7 +30,7 @@ const initValues = {
 
 const initState = { values: initValues };
 // Subject options array
-// const contractOptions = ["Perm/Full-time", "Perm/Part-time", "Freelance"];
+const Contract_Options = ["Perm/Full-time", "Perm/Part-time", "Freelance"];
 
 // styling
 const autoFillStyle = {
@@ -139,7 +139,7 @@ const ContactForm = () => {
           autoFillStyle={autoFillStyle}
         />
         {/* ------- Contract type -------- */}
-        <FormControl
+        {/* <FormControl
           id="contract"
           marginBottom="4"
           isInvalid={touched.contract && !values.contract}
@@ -164,17 +164,17 @@ const ContactForm = () => {
             </Stack>
           </RadioGroup>
           <FormErrorMessage>required</FormErrorMessage>
-        </FormControl>
+        </FormControl> */}
 
-        {/* <RadioButtons
+        <RadioButtons
           radioLabel="Contract Type"
           radioName="contract"
-          radioOptions={contractOptions}
+          radioOptions={Contract_Options}
           isInvalid={touched.contract && !values.contract}
           isRequired={true}
           onChange={handleChange}
           onBlur={onBlur}
-        /> */}
+        />
         {/* ------- Work style ------- */}
         {/* <DropdownMenu
           ddOptions={["fully remote", "hybrid", "100%on-site"]}
@@ -182,26 +182,6 @@ const ContactForm = () => {
           ddLabelTitle="Work style"
           ddName="work style"
         /> */}
-        {/* ------- Message -------- */}
-        {/* <FormControl
-          id="message"
-          marginBottom="4"
-          isInvalid={touched.subject && !values.subject}
-          isRequired
-        >
-          <FormLabel>Message</FormLabel>
-          <Textarea
-            name="message"
-            value={values.message}
-            sx={values.message !== "" && autoFillStyle}
-            onChange={handleChange}
-            onBlur={onBlur}
-            resize="vertical"
-            errorBorderColor="red.300"
-            _autofill={autoFillStyle}
-          />
-          <FormErrorMessage>required</FormErrorMessage>
-        </FormControl> */}
 
         <TextAreaInput
           textALabel="Message"
