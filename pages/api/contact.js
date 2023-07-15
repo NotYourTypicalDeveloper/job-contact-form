@@ -33,7 +33,7 @@ const handler = async (req, res) => {
   if (req.method === "POST") {
     const data = req.body;
     if (!data || !data.name || !data.email || !data.contract || !data.message) {
-      return res.status(400).send({ message: "Bad request" });
+      return res.status(400).send({ message: "Bad request l.36" });
     }
     // ✅
     try {

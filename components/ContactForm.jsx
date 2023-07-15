@@ -56,7 +56,7 @@ const ContactForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("CURRENT NAME AND VALUE ", name, value);
+    console.log("values object", state.values);
     setState((prev) => ({
       ...prev,
       values: {

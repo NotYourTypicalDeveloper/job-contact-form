@@ -25,7 +25,7 @@ const RadioButtons = ({
       <Radio
         key={`radiooption${option}`}
         value={option}
-        onChange={(option) => {
+        onClick={(option) => {
           setCurrentCheckedVal(option);
         }}
       >
@@ -33,6 +33,18 @@ const RadioButtons = ({
       </Radio>
     );
   });
+
+  const radioNameGlobal = radioName;
+  const handleRadioChange = (currentCheckedVal) => {
+    setCurrentCheckedVal(currentCheckedVal);
+    onChange({
+      target: {
+        value: currentCheckedVal,
+        name: `${radioNameGlobal}`,
+      },
+    });
+  };
+
   return (
     <>
       <FormControl
@@ -51,11 +63,7 @@ const RadioButtons = ({
               target: { value: currentCheckedVal, name: `${radioName}` },
             })
           }
-          onChange={(currentCheckedVal) =>
-            onChange({
-              target: { value: currentCheckedVal, name: `${radioName}` },
-            })
-          }
+          onChange={handleRadioChange}
         >
           <Stack color="#e1e0f0" direction="row">
             {radioButtonsElems}
