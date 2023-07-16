@@ -1,22 +1,10 @@
 import { React, useState } from "react";
-import {
-  Container,
-  FormControl,
-  FormLabel,
-  Button,
-  Textarea,
-  Stack,
-  Radio,
-  RadioGroup,
-  FormErrorMessage,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Container, Button, Text, useToast } from "@chakra-ui/react";
 import { sendContactForm } from "../lib/api";
 import SingleLineInput from "./atoms/SingleLineInput";
 import TextAreaInput from "./atoms/TextAreaInput";
 import RadioButtons from "./atoms/RadioButtons";
-// import DropdownMenu from "./atoms/DropdownMenu";
+import CheckBoxes from "./atoms/CheckBoxes";
 
 // Initial form values object
 const initValues = {
@@ -24,13 +12,22 @@ const initValues = {
   email: "",
   telephone: "",
   contract: "",
+  seniority: "",
   // workstyle: "",
   message: "",
 };
 
 const initState = { values: initValues };
-// Subject options array
+// array of options for "Contract", "Seniority"
 const Contract_Options = ["Perm/Full-time", "Perm/Part-time", "Freelance"];
+const Seniority_Options = [
+  "Junior",
+  "Mid-level",
+  "Mid to Senior",
+  "Senior",
+  "Tech-Lead",
+  "We're open and flexible",
+];
 
 // styling
 const autoFillStyle = {
@@ -62,6 +59,18 @@ const ContactForm = () => {
       values: {
         ...prev.values,
         [name]: value,
+      },
+    }));
+  };
+
+  const handleCheckChange = (inputName, optionsChecked) => {
+    console.log("values object", state.values);
+    optionsChecked = optionsChecked.join(", ");
+    setState((prev) => ({
+      ...prev,
+      values: {
+        ...prev.values,
+        [inputName]: optionsChecked,
       },
     }));
   };
@@ -139,33 +148,6 @@ const ContactForm = () => {
           autoFillStyle={autoFillStyle}
         />
         {/* ------- Contract type -------- */}
-        {/* <FormControl
-          id="contract"
-          marginBottom="4"
-          isInvalid={touched.contract && !values.contract}
-          isRequired
-        >
-          <FormLabel>contract</FormLabel>
-          <RadioGroup
-            name="contract"
-            errorBorderColor="red.300"
-            onBlur={onBlur}
-          >
-            <Stack color="#e1e0f0" direction="row">
-              <Radio value="Perm/Full-time" size="sm" onChange={handleChange}>
-                Perm/Full-time
-              </Radio>
-              <Radio value="Perm/Part-time" size="sm" onChange={handleChange}>
-                Perm/Part-time
-              </Radio>
-              <Radio value="Freelance" size="sm" onChange={handleChange}>
-                Freelance
-              </Radio>
-            </Stack>
-          </RadioGroup>
-          <FormErrorMessage>required</FormErrorMessage>
-        </FormControl> */}
-
         <RadioButtons
           radioLabel="Contract Type"
           radioName="contract"
@@ -175,6 +157,17 @@ const ContactForm = () => {
           onChange={handleChange}
           onBlur={onBlur}
         />
+        {/* ------- Seniority level ------- */}
+        <CheckBoxes
+          checkboxGroupLabel="Seniority level"
+          checkBoxName="seniority"
+          checkboxOptions={Seniority_Options}
+          isInvalid={touched.seniority && !values.seniority}
+          isRequired={false}
+          onCheckChange={handleCheckChange}
+        />
+        {values.seniority}
+
         {/* ------- Work style ------- */}
         {/* <DropdownMenu
           ddOptions={["fully remote", "hybrid", "100%on-site"]}
@@ -182,7 +175,6 @@ const ContactForm = () => {
           ddLabelTitle="Work style"
           ddName="work style"
         /> */}
-
         <TextAreaInput
           textALabel="Message"
           textAName="message"
@@ -193,7 +185,6 @@ const ContactForm = () => {
           onBlur={onBlur}
           autoFillStyle={autoFillStyle}
         />
-
         {/* ============== SUBMIT button ============== */}
         <Button
           type="submit"
