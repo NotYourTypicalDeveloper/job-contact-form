@@ -1,6 +1,6 @@
 import React from "react";
 import { Heading, Box } from "@chakra-ui/react";
-import ContactForm from "../components/ContactForm";
+import ContactForm from "../components/organisms/ContactForm";
 
 export default function Home() {
   return (

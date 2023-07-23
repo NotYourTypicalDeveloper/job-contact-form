@@ -1,10 +1,10 @@
 import { React, useState } from "react";
 import { Container, Button, Text, useToast } from "@chakra-ui/react";
-import { sendContactForm } from "../lib/api";
-import SingleLineInput from "./atoms/SingleLineInput";
-import TextAreaInput from "./atoms/TextAreaInput";
-import RadioButtons from "./atoms/RadioButtons";
-import CheckBoxes from "./atoms/CheckBoxes";
+import { sendContactForm } from "../../lib/api";
+import SingleLineInput from "../atoms/SingleLineInput";
+import TextAreaInput from "../atoms/TextAreaInput";
+import RadioButtons from "../atoms/RadioButtons";
+import CheckBoxes from "../atoms/CheckBoxes";
 
 // Initial form values object
 const initValues = {
@@ -53,7 +53,7 @@ const ContactForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("values object", state.values);
+    // console.log("values object", state.values);
     setState((prev) => ({
       ...prev,
       values: {

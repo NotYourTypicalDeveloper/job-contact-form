@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import {
   Checkbox,
   CheckboxGroup,
@@ -17,9 +17,6 @@ const CheckBoxes = ({
   // onBlur
 }) => {
   const [checkedValues, setCheckedValues] = useState([]);
-  useEffect(() => {
-    onCheckChange(checkBoxName, checkedValues);
-  }, [onCheckChange, checkedValues]);
 
   const handleCheckboxChange = (e) => {
     e.target.checked
@@ -27,6 +24,7 @@ const CheckBoxes = ({
       : setCheckedValues(
           [...checkedValues].filter((o) => o !== e.target.value)
         );
+    onCheckChange(checkBoxName, checkedValues);
   };
 
   // Populating the checkboxes_____
@@ -47,11 +45,7 @@ const CheckBoxes = ({
   return (
     <Stack>
       <FormLabel>{checkboxGroupLabel}</FormLabel>
-      <CheckboxGroup
-        isInvalid={isInvalid}
-        isRequired={isRequired}
-        name="seniority"
-      >
+      <CheckboxGroup isInvalid={isInvalid} isRequired={isRequired}>
         <Grid templateColumns="repeat(3, 1fr)" gap={3}>
           {checkboxElems}
         </Grid>
