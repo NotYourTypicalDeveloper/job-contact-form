@@ -1,4 +1,4 @@
-import React from "react";
+import { Dispatch, React } from "react";
 import {
   FormControl,
   FormLabel,
@@ -17,7 +17,15 @@ const SingleLineInput = ({
   onChange,
   onBlur,
   autoFillStyle,
+  dispatch,
 }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch({
+      type: "UPDATE_FIELD",
+      payload: { fieldName: name, newValue: value },
+    });
+  };
   return (
     <FormControl
       id={inputName}
@@ -32,7 +40,7 @@ const SingleLineInput = ({
         value={inputValue}
         sx={inputValue !== "" && autoFillStyle}
         errorBorderColor="red.300"
-        onChange={onChange}
+        onChange={handleChange}
         onBlur={onBlur}
       />
       <FormErrorMessage>required</FormErrorMessage>
