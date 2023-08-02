@@ -1,23 +1,31 @@
-import { React, useState } from "react";
+import { React, Dispatch } from "react";
 import {
   FormControl,
   FormLabel,
-  Stack,
   RadioGroup,
   Radio,
   FormErrorMessage,
 } from "@chakra-ui/react";
 
+// TODO: add onBlur function
 const RadioButtons = ({
   radioLabel,
-  radioName,
+  inputName,
+  formState,
   radioOptions,
   isInvalid,
   isRequired,
-  onChange,
-  onBlur,
+  dispatch,
 }) => {
-  const [currentCheckedVal, setCurrentCheckedVal] = useState("");
+  // const [currentCheckedVal, setCurrentCheckedVal] = useState("");
+  const handleRadioChange = (e) => {
+    console.log("etarget value: ", e.target.value);
+    const eTargetValue = e.target.value;
+    dispatch({
+      type: "UPDATE_FIELD",
+      payload: { fieldName: inputName, newValue: eTargetValue },
+    });
+  };
 
   // Populating the radio buttons
   const radioButtonsElems = radioOptions.map((option) => {
@@ -25,49 +33,29 @@ const RadioButtons = ({
       <Radio
         key={`radiooption${option}`}
         value={option}
-        onClick={(option) => {
-          setCurrentCheckedVal(option);
-        }}
+        onChange={handleRadioChange}
       >
         {option}
       </Radio>
     );
   });
 
-  const radioNameGlobal = radioName;
-  const handleRadioChange = (currentCheckedVal) => {
-    setCurrentCheckedVal(currentCheckedVal);
-    onChange({
-      target: {
-        value: currentCheckedVal,
-        name: `${radioNameGlobal}`,
-      },
-    });
-  };
-
   return (
     <>
       <FormControl
-        id={radioName}
+        id={inputName}
         marginBottom="4"
         isInvalid={isInvalid}
         isRequired={isRequired}
       >
         <FormLabel>{radioLabel}</FormLabel>
         <RadioGroup
-          name={`${radioName}`}
-          value={currentCheckedVal}
+          name={`${inputName}`}
+          value={formState.values[inputName]}
           errorBorderColor="red.300"
-          onBlur={(currentCheckedVal) =>
-            onBlur({
-              target: { value: currentCheckedVal, name: `${radioName}` },
-            })
-          }
-          onChange={handleRadioChange}
+          display="flex"
         >
-          <Stack color="#e1e0f0" direction="row">
-            {radioButtonsElems}
-          </Stack>
+          {radioButtonsElems}
         </RadioGroup>
         <FormErrorMessage>required</FormErrorMessage>
       </FormControl>

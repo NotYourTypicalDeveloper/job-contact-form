@@ -13,6 +13,8 @@ import TextAreaInput from "../atoms/TextAreaInput";
 import RadioButtons from "../atoms/RadioButtons";
 import CheckBoxes from "../atoms/CheckBoxes";
 
+// FIXME: Fix onBlur, isInvalid
+
 // array of options for "Contract", "Seniority"
 const Contract_Options = ["Perm/Full-time", "Perm/Part-time", "Freelance"];
 const Seniority_Options = [
@@ -34,13 +36,12 @@ const autoFillStyle = {
 
 const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
-  // Form state
-  // const [state, setState] = useState(initState);
-  //If user clicks out of input
-  const [touched, setTouched] = useState({});
+
+  //If user clicks out of input TODO: add this to the reducer
+  // const [touched, setTouched] = useState({});
 
   //for the success message pop-up
-  const successMsg = useToast();
+  // const successMsg = useToast();
 
   const onBlur = ({ target }) =>
     setTouched((prev) => ({ ...prev, [target.name]: true }));
@@ -132,15 +133,16 @@ const ContactForm = () => {
               autoFillStyle={autoFillStyle}
             />
             {/* ------- Contract type -------- */}
-            {/* <RadioButtons
+            <RadioButtons
               radioLabel="Contract Type"
-              radioName="contract"
+              inputName="contract"
+              formState={formState}
               radioOptions={Contract_Options}
-              isInvalid={touched.contract && !values.contract}
+              // isInvalid={touched.contract && !values.contract}
               isRequired={true}
-              onChange={handleChange}
+              dispatch={dispatch}
               onBlur={onBlur}
-            /> */}
+            />
             {/* ------- Seniority level ------- */}
             {/* <CheckBoxes
               checkboxGroupLabel="Seniority level"
