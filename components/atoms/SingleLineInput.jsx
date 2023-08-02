@@ -14,7 +14,6 @@ const SingleLineInput = ({
   inputValue,
   isInvalid,
   isRequired,
-  onChange,
   onBlur,
   autoFillStyle,
   dispatch,

@@ -43,8 +43,8 @@ const ContactForm = () => {
   //for the success message pop-up
   // const successMsg = useToast();
 
-  const onBlur = ({ target }) =>
-    setTouched((prev) => ({ ...prev, [target.name]: true }));
+  // const onBlur = ({ target }) =>
+  //   setTouched((prev) => ({ ...prev, [target.name]: true }));
 
   // const handleCheckChange = (inputName, optionsChecked) => {
   //   console.log("values object", state.values);
@@ -105,7 +105,7 @@ const ContactForm = () => {
               // isInvalid={touched.name && !values.name}
               isRequired={true}
               dispatch={dispatch}
-              onBlur={onBlur}
+              // onBlur={onBlur}
               autoFillStyle={autoFillStyle}
             />
             {/* ------- E-mail -------- */}
@@ -117,7 +117,7 @@ const ContactForm = () => {
               // isInvalid={touched.email && !values.email}
               isRequired={true}
               dispatch={dispatch}
-              onBlur={onBlur}
+              // onBlur={onBlur}
               autoFillStyle={autoFillStyle}
             />
             {/* ------- Tel -------- */}
@@ -129,7 +129,7 @@ const ContactForm = () => {
               isInvalid={false}
               isRequired={false}
               dispatch={dispatch}
-              onBlur={onBlur}
+              // onBlur={onBlur}
               autoFillStyle={autoFillStyle}
             />
             {/* ------- Contract type -------- */}
@@ -141,7 +141,7 @@ const ContactForm = () => {
               // isInvalid={touched.contract && !values.contract}
               isRequired={true}
               dispatch={dispatch}
-              onBlur={onBlur}
+              // onBlur={onBlur}
             />
             {/* ------- Seniority level ------- */}
             {/* <CheckBoxes
@@ -161,16 +161,16 @@ const ContactForm = () => {
           ddLabelTitle="Work style"
           ddName="work style"
         /> */}
-            {/* <TextAreaInput
-              textALabel="Message"
-              textAName="message"
-              textAValue={values.message}
-              isInvalid={touched.message && !values.message}
+            <TextAreaInput
+              inputLabel="Message"
+              inputName="message"
+              textAValue={formState.message}
+              // isInvalid={touched.message && !values.message}
               isRequired={true}
-              onChange={handleChange}
-              onBlur={onBlur}
+              dispatch={dispatch}
+              // onBlur={onBlur}
               autoFillStyle={autoFillStyle}
-            /> */}
+            />
             {/* ============== SUBMIT button ============== */}
             {/* <Button
               type="submit"

@@ -1,4 +1,4 @@
-import React from "react";
+import { React, Dispatch } from "react";
 import {
   FormControl,
   FormLabel,
@@ -7,27 +7,34 @@ import {
 } from "@chakra-ui/react";
 
 const TextAreaInput = ({
-  textALabel,
-  textAName,
+  inputLabel,
+  inputName,
   textAValue,
   isInvalid,
   isRequired,
-  onChange,
+  dispatch,
   onBlur,
   autoFillStyle,
 }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch({
+      type: "UPDATE_FIELD",
+      payload: { fieldName: name, newValue: value },
+    });
+  };
   return (
     <FormControl
-      id={textAName}
+      id={inputName}
       marginBottom="4"
       isInvalid={isInvalid}
       isRequired={isRequired}
     >
-      <FormLabel>{textALabel}</FormLabel>
+      <FormLabel>{inputLabel}</FormLabel>
       <Textarea
-        name={textAName}
+        name={inputName}
         value={textAValue}
-        onChange={onChange}
+        onChange={handleChange}
         onBlur={onBlur}
         resize="vertical"
         errorBorderColor="red.300"
