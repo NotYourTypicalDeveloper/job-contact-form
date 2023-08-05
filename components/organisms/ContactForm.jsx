@@ -144,15 +144,16 @@ const ContactForm = () => {
               // onBlur={onBlur}
             />
             {/* ------- Seniority level ------- */}
-            {/* <CheckBoxes
+            <CheckBoxes
               checkboxGroupLabel="Seniority level"
-              checkBoxName="seniority"
+              inputName="seniority"
               checkboxOptions={Seniority_Options}
-              isInvalid={touched.seniority && !values.seniority}
+              dispatch={dispatch}
+              formState={formState}
+              // isInvalid={touched.seniority && !values.seniority}
               isRequired={false}
-              onCheckChange={handleCheckChange}
             />
-            {values.seniority} */}
+            {formState.seniority}
 
             {/* ------- Work style ------- */}
             {/* <DropdownMenu

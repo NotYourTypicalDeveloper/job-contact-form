@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useCallback } from "react";
+import { React } from "react";
 import {
   Checkbox,
   CheckboxGroup,
@@ -9,32 +9,42 @@ import {
 
 const CheckBoxes = ({
   checkboxGroupLabel,
-  checkBoxName,
+  inputName,
   checkboxOptions,
-  isInvalid,
+  formState,
+  // isInvalid,
   isRequired,
-  onCheckChange,
+  dispatch,
   // onBlur
 }) => {
-  const [checkedValues, setCheckedValues] = useState([]);
-
   const handleCheckboxChange = (e) => {
-    e.target.checked
-      ? setCheckedValues([...checkedValues, e.target.value])
-      : setCheckedValues(
-          [...checkedValues].filter((o) => o !== e.target.value)
-        );
-    onCheckChange(checkBoxName, checkedValues);
+    if (e.target.checked) {
+      dispatch({
+        type: "ADD_CHECKBOX_VALUE",
+        payload: {
+          fieldName: inputName,
+          newValue: e.target.value,
+        },
+      });
+    } else {
+      dispatch({
+        type: "REMOVE_CHECKBOX_VALUE",
+        payload: {
+          fieldName: inputName,
+          newValue: e.target.value,
+        },
+      });
+    }
   };
 
   // Populating the checkboxes_____
   const checkboxElems = checkboxOptions.map((option) => {
     return (
       <Checkbox
+        type="checkbox"
         size="md"
         key={`checkbox${option}`}
         value={option}
-        checked={checkedValues.includes(option)}
         onChange={handleCheckboxChange}
       >
         {option}
@@ -45,10 +55,11 @@ const CheckBoxes = ({
   return (
     <Stack>
       <FormLabel>{checkboxGroupLabel}</FormLabel>
-      <CheckboxGroup isInvalid={isInvalid} isRequired={isRequired}>
+      <CheckboxGroup isRequired={isRequired}>
         <Grid templateColumns="repeat(3, 1fr)" gap={3}>
           {checkboxElems}
         </Grid>
+        {formState.values[inputName].toString()}
       </CheckboxGroup>
     </Stack>
   );
