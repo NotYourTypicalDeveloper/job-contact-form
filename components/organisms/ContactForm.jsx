@@ -28,7 +28,7 @@ const Seniority_Options = [
 ];
 
 // styling
-const autoFillStyle = {
+export const autoFillStyle = {
   border: "1px solid transparent",
   textFillColor: "white",
   boxShadow: "0 0 0 1000px #1b1b1b inset",
@@ -91,11 +91,18 @@ const ContactForm = () => {
               inputName="name"
               inputType="text"
               inputValue={formState.name}
-              // isInvalid={touched.name && !values.name}
               isRequired={true}
               dispatch={dispatch}
-              // onBlur={onBlur}
-              autoFillStyle={autoFillStyle}
+            />
+
+            {/* ------- Company -------- */}
+            <SingleLineInput
+              inputLabel="Company"
+              inputName="company"
+              inputType="text"
+              inputValue={formState.company}
+              isRequired={true}
+              dispatch={dispatch}
             />
             {/* ------- E-mail -------- */}
             <SingleLineInput
@@ -103,11 +110,8 @@ const ContactForm = () => {
               inputName="email"
               inputType="email"
               inputValue={formState.email}
-              // isInvalid={touched.email && !values.email}
               isRequired={true}
               dispatch={dispatch}
-              // onBlur={onBlur}
-              autoFillStyle={autoFillStyle}
             />
             {/* ------- Tel -------- */}
             <SingleLineInput
@@ -115,22 +119,25 @@ const ContactForm = () => {
               inputName="telephone"
               inputType="tel"
               inputValue={formState.telephone}
-              isInvalid={false}
-              isRequired={false}
               dispatch={dispatch}
-              // onBlur={onBlur}
-              autoFillStyle={autoFillStyle}
             />
+            {/* ------- Message ------- */}
+            <TextAreaInput
+              inputLabel="Message"
+              inputName="message"
+              textAValue={formState.message}
+              isRequired={true}
+              dispatch={dispatch}
+            />
+
             {/* ------- Contract type -------- */}
             <RadioButtons
               radioLabel="Contract Type"
               inputName="contract"
               formState={formState}
               radioOptions={Contract_Options}
-              // isInvalid={touched.contract && !values.contract}
               isRequired={true}
               dispatch={dispatch}
-              // onBlur={onBlur}
             />
             {/* ------- Seniority level ------- */}
             <CheckBoxes
@@ -139,31 +146,56 @@ const ContactForm = () => {
               checkboxOptions={Seniority_Options}
               dispatch={dispatch}
               formState={formState}
-              // isInvalid={touched.seniority && !values.seniority}
               isRequired={false}
             />
-            {formState.seniority}
+            {/* ------- Job description------- */}
+            <TextAreaInput
+              inputLabel="Job Description"
+              inputName="jobdescription"
+              textAValue={formState.jobdescription}
+              isRequired={true}
+              dispatch={dispatch}
+            />
+            {/* ------- Location ------- */}
+            <SingleLineInput
+              inputLabel="Location"
+              inputName="location"
+              inputType="text"
+              inputValue={formState.telephone}
+              dispatch={dispatch}
+            />
+
             {/* ------- Work style ------- */}
             <DropdownMenu
-              ddOptions={["fully remote", "hybrid", "100% on-site"]}
+              ddOptions={[
+                "fully remote",
+                "hybrid",
+                "100% on-site",
+                "negotiable",
+              ]}
               ddLabel="Work style"
               inputName="work style"
               dispatch={dispatch}
               formState={formState}
               isRequired={true}
             />
-
-            {/* ------- Message ------- */}
+            {/* ------- Company's culture ------- */}
             <TextAreaInput
-              inputLabel="Message"
-              inputName="message"
-              textAValue={formState.message}
-              // isInvalid={touched.message && !values.message}
+              inputLabel="Describe the company's culture"
+              inputName="companysculture"
+              textAValue={formState.companysculture}
               isRequired={true}
               dispatch={dispatch}
-              // onBlur={onBlur}
-              autoFillStyle={autoFillStyle}
             />
+            {/* ------- Recruitment process ------- */}
+            <TextAreaInput
+              inputLabel="What is the recruitment process"
+              inputName="recruitmentprocess"
+              textAValue={formState.recruitmentprocess}
+              isRequired={true}
+              dispatch={dispatch}
+            />
+
             {/* ============== SUBMIT button ============== */}
             {/* <Button
               type="submit"

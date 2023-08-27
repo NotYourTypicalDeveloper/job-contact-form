@@ -1,10 +1,11 @@
-import { React, Dispatch } from "react";
+import { React } from "react";
 import {
   FormControl,
   FormLabel,
   Textarea,
   FormErrorMessage,
 } from "@chakra-ui/react";
+import { autoFillStyle } from "../organisms/ContactForm.jsx";
 
 const TextAreaInput = ({
   inputLabel,
@@ -14,7 +15,6 @@ const TextAreaInput = ({
   isRequired,
   dispatch,
   onBlur,
-  autoFillStyle,
 }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +38,7 @@ const TextAreaInput = ({
         onBlur={onBlur}
         resize="vertical"
         errorBorderColor="red.300"
-        sx={textAValue !== "" && autoFillStyle}
+        sx={autoFillStyle}
       />
       <FormErrorMessage>required</FormErrorMessage>
     </FormControl>

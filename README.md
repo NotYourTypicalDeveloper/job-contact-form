@@ -1,31 +1,40 @@
 ## TO DO
 
-1/ add more fields
+🔺 add fields:
 
 page 1:
 
-- name,
-- email,
-- company,
-- phone,
+- name (single line text)
+- company (single line text)
+- email (single line text - type email)
+- phone (single line text - type telephone numbers)
+- message (multi-line text)
 
 page 2:
 
-- contract type,
-- seniority level,
-- job description,
-- salary range,
-- location
+- contract type (radio buttons)
+- seniority level (check boxes)
+- job description (multi-line text)
+- salary range (single line text to become slider potentially)
+- location (single line text)
 
 page 3:
 
-- number of working hours
-- workstyle
-- describe the company's culture
-- recruitment process
+- number of working hours (number input)
+- workstyle (dropdown)
+- describe the company's culture (multi-line text)
+- recruitment process (multi-line text)
 
-2/ Update the submit button & success message
+🔺 Update the submit button
 
-3/ Update validation
+- send form
+- clear inputs
+- success message
 
-4/ Create multistep: buttons Next and Previous
+🔺 Update validation (on Blur and on Submit)
+
+🔺 Create multistep: buttons Next and Previous
+
+🔺 Refactoring
+
+◿ Bonus: placeholders for company's culture, recruitment process input

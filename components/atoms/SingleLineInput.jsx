@@ -5,6 +5,7 @@ import {
   Input,
   FormErrorMessage,
 } from "@chakra-ui/react";
+import { autoFillStyle } from "../organisms/ContactForm.jsx";
 
 // TODO: add regex validation depending on inputType
 const SingleLineInput = ({
@@ -15,7 +16,6 @@ const SingleLineInput = ({
   isInvalid,
   isRequired,
   onBlur,
-  autoFillStyle,
   dispatch,
 }) => {
   const handleChange = (e) => {
@@ -37,7 +37,7 @@ const SingleLineInput = ({
         type={inputType}
         name={inputName}
         value={inputValue}
-        sx={inputValue !== "" && autoFillStyle}
+        sx={autoFillStyle}
         errorBorderColor="red.300"
         onChange={handleChange}
         onBlur={onBlur}
