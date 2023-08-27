@@ -12,6 +12,7 @@ import SingleLineInput from "../atoms/SingleLineInput";
 import TextAreaInput from "../atoms/TextAreaInput";
 import RadioButtons from "../atoms/RadioButtons";
 import CheckBoxes from "../atoms/CheckBoxes";
+import DropdownMenu from "../atoms/DropdownMenu.jsx";
 
 // FIXME: Fix onBlur, isInvalid
 
@@ -45,18 +46,6 @@ const ContactForm = () => {
 
   // const onBlur = ({ target }) =>
   //   setTouched((prev) => ({ ...prev, [target.name]: true }));
-
-  // const handleCheckChange = (inputName, optionsChecked) => {
-  //   console.log("values object", state.values);
-  //   optionsChecked = optionsChecked.join(", ");
-  //   setState((prev) => ({
-  //     ...prev,
-  //     values: {
-  //       ...prev.values,
-  //       [inputName]: optionsChecked,
-  //     },
-  //   }));
-  // };
 
   // ON SUBMIT
   // const onSubmit = async () => {
@@ -154,14 +143,17 @@ const ContactForm = () => {
               isRequired={false}
             />
             {formState.seniority}
-
             {/* ------- Work style ------- */}
-            {/* <DropdownMenu
-          ddOptions={["fully remote", "hybrid", "100%on-site"]}
-          onSelect={handleChange}
-          ddLabelTitle="Work style"
-          ddName="work style"
-        /> */}
+            <DropdownMenu
+              ddOptions={["fully remote", "hybrid", "100% on-site"]}
+              ddLabel="Work style"
+              inputName="work style"
+              dispatch={dispatch}
+              formState={formState}
+              isRequired={true}
+            />
+
+            {/* ------- Message ------- */}
             <TextAreaInput
               inputLabel="Message"
               inputName="message"

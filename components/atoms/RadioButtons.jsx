@@ -17,16 +17,6 @@ const RadioButtons = ({
   isRequired,
   dispatch,
 }) => {
-  // const [currentCheckedVal, setCurrentCheckedVal] = useState("");
-  const handleRadioChange = (e) => {
-    console.log("etarget value: ", e.target.value);
-    const eTargetValue = e.target.value;
-    dispatch({
-      type: "UPDATE_FIELD",
-      payload: { fieldName: inputName, newValue: eTargetValue },
-    });
-  };
-
   // Populating the radio buttons
   const radioButtonsElems = radioOptions.map((option) => {
     return (
@@ -39,6 +29,13 @@ const RadioButtons = ({
       </Radio>
     );
   });
+  function handleRadioChange(e) {
+    const eTargetValue = e.target.value;
+    dispatch({
+      type: "UPDATE_FIELD",
+      payload: { fieldName: inputName, newValue: eTargetValue },
+    });
+  }
 
   return (
     <>
