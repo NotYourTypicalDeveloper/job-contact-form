@@ -13,6 +13,7 @@ import TextAreaInput from "../atoms/TextAreaInput";
 import RadioButtons from "../atoms/RadioButtons";
 import CheckBoxes from "../atoms/CheckBoxes";
 import DropdownMenu from "../atoms/DropdownMenu.jsx";
+import RangeSliderBar from "../atoms/RangeSliderBar.jsx";
 
 // FIXME: Fix onBlur, isInvalid
 
@@ -142,7 +143,6 @@ const ContactForm = () => {
               isRequired={true}
               dispatch={dispatch}
             />
-
             {/* ------- Contract type -------- */}
             <RadioButtons
               radioLabel="Contract Type"
@@ -169,6 +169,14 @@ const ContactForm = () => {
               isRequired={true}
               dispatch={dispatch}
             />
+            {/* ------- Salary------- */}
+            <RangeSliderBar
+              inputLabel="Salary range (£)"
+              inputName="salary"
+              isRequired={true}
+              dispatch={dispatch}
+              currValuesRange={formState.values.salary}
+            />
             {/* ------- Location ------- */}
             <SingleLineInput
               inputLabel="Location"
@@ -177,7 +185,6 @@ const ContactForm = () => {
               inputValue={formState.values.location}
               dispatch={dispatch}
             />
-
             {/* ------- Work style ------- */}
             <DropdownMenu
               ddOptions={WorkStyle_Options}
@@ -203,19 +210,26 @@ const ContactForm = () => {
               isRequired={true}
               dispatch={dispatch}
             />
-
             {/* ============== SUBMIT button ============== */}
             <Button
               type="submit"
               colorScheme="blue"
               isLoading={formState.isLoading}
               onClick={onSubmit}
-              // isDisabled={
-              //   !values.name ||
-              //   !values.email ||
-              //   !values.contract ||
-              //   !values.message
-              // }
+              //   isDisabled={
+              //     !formState.values.sendername ||
+              //     !formState.values.company ||
+              //     !formState.values.email ||
+              //     !formState.values.message ||
+              //     !formState.values.contract ||
+              //     !formState.values.seniority ||
+              //     !formState.values.jobdescription ||
+              //     !formState.values.salary ||
+              //     !formState.values.location ||
+              //     !formState.values.workstyle ||
+              //     !formState.values.message ||
+              //     !formState.values.recruitmentprocess
+              //   }
             >
               Submit
             </Button>
