@@ -1,19 +1,12 @@
 import { React } from "react";
-import {
-  Checkbox,
-  CheckboxGroup,
-  FormLabel,
-  Stack,
-  Grid,
-} from "@chakra-ui/react";
+import { Checkbox, FormLabel, Stack, Grid } from "@chakra-ui/react";
 
 const CheckBoxes = ({
   checkboxGroupLabel,
   inputName,
   checkboxOptions,
-  formState,
+  selectedValues,
   // isInvalid,
-  isRequired,
   dispatch,
   // onBlur
 }) => {
@@ -36,15 +29,22 @@ const CheckBoxes = ({
       });
     }
   };
+  const hasSelectedOptions = selectedValues.length > 0;
 
   // Populating the checkboxes_____
   const checkboxElems = checkboxOptions.map((option) => {
+    let boxIsChecked = false;
+    if (hasSelectedOptions && selectedValues.includes(option)) {
+      boxIsChecked = true;
+    }
+
     return (
       <Checkbox
         type="checkbox"
         size="md"
         key={`checkbox${option}`}
         value={option}
+        isChecked={boxIsChecked}
         onChange={handleCheckboxChange}
       >
         {option}
@@ -55,12 +55,10 @@ const CheckBoxes = ({
   return (
     <Stack>
       <FormLabel>{checkboxGroupLabel}</FormLabel>
-      <CheckboxGroup isRequired={isRequired}>
-        <Grid templateColumns="repeat(3, 1fr)" gap={3}>
-          {checkboxElems}
-        </Grid>
-        {formState.values[inputName].toString()}
-      </CheckboxGroup>
+      <Grid templateColumns="repeat(3, 1fr)" gap={3}>
+        {checkboxElems}
+      </Grid>
+      {selectedValues}
     </Stack>
   );
 };

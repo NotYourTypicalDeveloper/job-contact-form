@@ -28,7 +28,7 @@ const SingleLineInput = ({
   return (
     <FormControl
       id={inputName}
-      marginBottom="4"
+      marginBottom={4}
       isInvalid={isInvalid}
       isRequired={isRequired}
     >

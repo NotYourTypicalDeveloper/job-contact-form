@@ -10,7 +10,7 @@ import { autoFillStyle } from "../organisms/ContactForm.jsx";
 const TextAreaInput = ({
   inputLabel,
   inputName,
-  textAValue,
+  inputValue,
   isInvalid,
   isRequired,
   dispatch,
@@ -33,7 +33,7 @@ const TextAreaInput = ({
       <FormLabel>{inputLabel}</FormLabel>
       <Textarea
         name={inputName}
-        value={textAValue}
+        value={inputValue}
         onChange={handleChange}
         onBlur={onBlur}
         resize="vertical"

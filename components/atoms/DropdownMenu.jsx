@@ -34,7 +34,9 @@ const DropdownMenu = ({
     <>
       <FormControl id={inputName} marginBottom="4" isRequired={isRequired}>
         <FormLabel>{ddLabel}</FormLabel>
-        <Select onChange={handleChange}>{dropdownOptionsElems}</Select>
+        <Select onChange={handleChange} placeholder="Select option">
+          {dropdownOptionsElems}
+        </Select>
         <FormErrorMessage>required</FormErrorMessage>
       </FormControl>
     </>
