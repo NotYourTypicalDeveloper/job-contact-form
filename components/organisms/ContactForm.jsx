@@ -55,7 +55,7 @@ const ContactForm = () => {
   //   setTouched((prev) => ({ ...prev, [target.name]: true }));
 
   // ON SUBMIT
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     // Set isLoading to true
     dispatch({
       type: "TOGGLE_ISLOADING",
@@ -64,7 +64,7 @@ const ContactForm = () => {
 
     try {
       // send contact form
-      await sendContactForm(data);
+      await sendContactForm(formState.values);
       // setTouched({});
       dispatch({
         type: "RESET_FORM",
@@ -209,7 +209,7 @@ const ContactForm = () => {
               type="submit"
               colorScheme="blue"
               isLoading={formState.isLoading}
-              onClick={() => onSubmit(formState.values)}
+              onClick={onSubmit}
               // isDisabled={
               //   !values.name ||
               //   !values.email ||

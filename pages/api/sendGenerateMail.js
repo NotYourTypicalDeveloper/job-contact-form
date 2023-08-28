@@ -41,7 +41,7 @@ const generateEmailContent = (data) => {
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const data = req.body;
-    if (!data || !data.name || !data.email || !data.contract || !data.message) {
+    if (!data) {
       return res.status(400).send({ message: "Bad request l.36" });
     }
     // ✅
@@ -49,7 +49,7 @@ const handler = async (req, res) => {
       await transporter.sendMail({
         ...mailOptions,
         ...generateEmailContent(data),
-        subject: `Message from ${data.name} | Rec form`,
+        subject: `Message from ${data.sendername} | Rec form`,
       });
       return res.status(200).json({ success: true });
     } catch (err) {
