@@ -165,6 +165,7 @@ const ContactForm = () => {
             <TextAreaInput
               inputLabel="Job Description"
               inputName="jobdescription"
+              placeholder="Please include tasks, complete Tech stack and level required"
               inputValue={formState.values.jobdescription}
               isRequired={true}
               dispatch={dispatch}
@@ -189,7 +190,7 @@ const ContactForm = () => {
             <DropdownMenu
               ddOptions={WorkStyle_Options}
               ddLabel="Work style"
-              inputName="work style"
+              inputName="workstyle"
               dispatch={dispatch}
               formState={formState}
               isRequired={true}
@@ -199,6 +200,7 @@ const ContactForm = () => {
               inputLabel="Describe the company's culture"
               inputName="companysculture"
               inputValue={formState.values.companysculture}
+              placeholder="Company's values, benefits, pros and cons"
               isRequired={true}
               dispatch={dispatch}
             />
@@ -206,6 +208,7 @@ const ContactForm = () => {
             <TextAreaInput
               inputLabel="What is the recruitment process"
               inputName="recruitmentprocess"
+              placeholder="Describe the steps and timeframe"
               inputValue={formState.values.recruitmentprocess}
               isRequired={true}
               dispatch={dispatch}

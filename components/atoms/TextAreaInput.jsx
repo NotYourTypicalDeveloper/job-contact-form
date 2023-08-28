@@ -5,7 +5,6 @@ import {
   Textarea,
   FormErrorMessage,
 } from "@chakra-ui/react";
-import { autoFillStyle } from "../organisms/ContactForm.jsx";
 
 const TextAreaInput = ({
   inputLabel,
@@ -15,6 +14,7 @@ const TextAreaInput = ({
   isRequired,
   dispatch,
   onBlur,
+  placeholder,
 }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +38,7 @@ const TextAreaInput = ({
         onBlur={onBlur}
         resize="vertical"
         errorBorderColor="red.300"
-        sx={autoFillStyle}
+        placeholder={placeholder}
       />
       <FormErrorMessage>required</FormErrorMessage>
     </FormControl>
