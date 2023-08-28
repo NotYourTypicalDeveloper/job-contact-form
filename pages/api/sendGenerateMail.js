@@ -4,10 +4,19 @@ import { mailOptions, transporter } from "../../config/nodemailer";
 // object contains email subjects
 const CONTACT_MESSAGE_FIELDS = {
   name: "Name",
+  company: "Company",
   email: "Email",
   telephone: "Telephone",
-  contract: "Contract Type",
   message: "Message",
+  contract: "Contract type",
+  seniority: "Seniority level",
+  jobdescription: "Job description",
+  salary: "Salary range",
+  location: "Location",
+  workinghours: "Number of Working hours",
+  workstyle: "Work style",
+  companysculture: "Company's culture",
+  recruitmentprocess: "Recruitment process",
 };
 // generate the email content
 const generateEmailContent = (data) => {
