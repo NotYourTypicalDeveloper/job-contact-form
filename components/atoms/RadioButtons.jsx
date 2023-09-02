@@ -24,6 +24,7 @@ const RadioButtons = ({
         key={`radiooption${option}`}
         value={option}
         onChange={handleRadioChange}
+        mr={2}
       >
         {option}
       </Radio>

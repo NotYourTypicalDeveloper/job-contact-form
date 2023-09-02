@@ -1,5 +1,5 @@
-import { React, useState, useReducer } from "react";
-import { Container, Button, Text, useToast } from "@chakra-ui/react";
+import { React, useReducer } from "react";
+import { Container, Button, useToast } from "@chakra-ui/react";
 import {
   FormContext,
   FormDispatchContext,
@@ -7,33 +7,13 @@ import {
 import { formReducer } from "../../lib/reducer/reducer.js";
 import { initialState } from "../../lib/reducer/reducer.js";
 import { sendContactForm } from "../../lib/api";
-// Import components
-import SingleLineInput from "../atoms/SingleLineInput";
-import TextAreaInput from "../atoms/TextAreaInput";
-import RadioButtons from "../atoms/RadioButtons";
-import CheckBoxes from "../atoms/CheckBoxes";
-import DropdownMenu from "../atoms/DropdownMenu.jsx";
-import RangeSliderBar from "../atoms/RangeSliderBar.jsx";
+
+// Form Pages
+import Page1 from "../molecules/Page1.jsx";
+import Page2 from "../molecules/Page2.jsx";
+import Page3 from "../molecules/Page3.jsx";
 
 // FIXME: Fix onBlur, isInvalid
-
-// array of options for "Contract", "Seniority"
-const Contract_Options = ["Perm/Full-time", "Perm/Part-time", "Freelance"];
-const Seniority_Options = [
-  "Junior",
-  "Mid-level",
-  "Mid to Senior",
-  "Senior",
-  "Tech-Lead",
-  "We're open and flexible",
-];
-
-const WorkStyle_Options = [
-  "fully remote",
-  "hybrid",
-  "100% on-site",
-  "negotiable",
-];
 
 // styling
 export const autoFillStyle = {
@@ -67,9 +47,9 @@ const ContactForm = () => {
       // send contact form
       await sendContactForm(formState.values);
       // setTouched({});
-      dispatch({
-        type: "RESET_FORM",
-      });
+      // dispatch({
+      //   type: "RESET_FORM",
+      // });
 
       // show success message
       successMsg({
@@ -79,12 +59,7 @@ const ContactForm = () => {
         position: "top",
       });
     } catch (error) {
-      // if error ❌
-      // setState((prev) => ({
-      //   ...prev,
-      //   isLoading: false,
-      //   error: error.message,
-      // }));
+      // TODO: add error handling
       console.log("error submitting form");
     }
   };
@@ -93,146 +68,32 @@ const ContactForm = () => {
     <FormContext.Provider value={formState}>
       <FormDispatchContext.Provider value={dispatch}>
         <Container>
-          {/* ====== Form starts here ====== */}
-          {/* {error && (
-            <Text color="red.300" my={4}>
-              ❌ {error} ❌
-            </Text>
-          )} */}
+          {/* TODO: add error message  */}
           <form>
-            {/* ------- Name -------- */}
-            <SingleLineInput
-              inputLabel="Name"
-              inputName="sendername"
-              inputType="text"
-              inputValue={formState.values.sendername}
-              isRequired={true}
-              dispatch={dispatch}
-            />
-            {/* ------- Company -------- */}
-            <SingleLineInput
-              inputLabel="Company"
-              inputName="company"
-              inputType="text"
-              inputValue={formState.values.company}
-              isRequired={true}
-              dispatch={dispatch}
-            />
-            {/* ------- E-mail -------- */}
-            <SingleLineInput
-              inputLabel="Email"
-              inputName="email"
-              inputType="email"
-              inputValue={formState.values.email}
-              isRequired={true}
-              dispatch={dispatch}
-            />
-            {/* ------- Tel -------- */}
-            <SingleLineInput
-              inputLabel="Telephone"
-              inputName="telephone"
-              inputType="tel"
-              inputValue={formState.values.telephone}
-              dispatch={dispatch}
-            />
-            {/* ------- Message ------- */}
-            <TextAreaInput
-              inputLabel="Message"
-              inputName="message"
-              inputValue={formState.values.message}
-              isRequired={true}
-              dispatch={dispatch}
-            />
-            {/* ------- Contract type -------- */}
-            <RadioButtons
-              radioLabel="Contract Type"
-              inputName="contract"
-              formState={formState}
-              radioOptions={Contract_Options}
-              isRequired={true}
-              dispatch={dispatch}
-            />
-            {/* ------- Seniority level ------- */}
-            <CheckBoxes
-              checkboxGroupLabel="Seniority level"
-              inputName="seniority"
-              checkboxOptions={Seniority_Options}
-              dispatch={dispatch}
-              selectedValues={formState.values.seniority}
-              isRequired={false}
-            />
-            {/* ------- Job description------- */}
-            <TextAreaInput
-              inputLabel="Job Description"
-              inputName="jobdescription"
-              placeholder="Please include tasks, complete Tech stack and level required"
-              inputValue={formState.values.jobdescription}
-              isRequired={true}
-              dispatch={dispatch}
-            />
-            {/* ------- Salary------- */}
-            <RangeSliderBar
-              inputLabel="Salary range (£)"
-              inputName="salary"
-              isRequired={true}
-              dispatch={dispatch}
-              currValuesRange={formState.values.salary}
-            />
-            {/* ------- Location ------- */}
-            <SingleLineInput
-              inputLabel="Location"
-              inputName="location"
-              inputType="text"
-              inputValue={formState.values.location}
-              dispatch={dispatch}
-            />
-            {/* ------- Work style ------- */}
-            <DropdownMenu
-              ddOptions={WorkStyle_Options}
-              ddLabel="Work style"
-              inputName="workstyle"
-              dispatch={dispatch}
-              formState={formState}
-              isRequired={true}
-            />
-            {/* ------- Company's culture ------- */}
-            <TextAreaInput
-              inputLabel="Describe the company's culture"
-              inputName="companysculture"
-              inputValue={formState.values.companysculture}
-              placeholder="Company's values, benefits, pros and cons"
-              isRequired={true}
-              dispatch={dispatch}
-            />
-            {/* ------- Recruitment process ------- */}
-            <TextAreaInput
-              inputLabel="What is the recruitment process"
-              inputName="recruitmentprocess"
-              placeholder="Describe the steps and timeframe"
-              inputValue={formState.values.recruitmentprocess}
-              isRequired={true}
-              dispatch={dispatch}
-            />
+            <Page1 formState={formState} dispatch={dispatch} />
+            <Page2 formState={formState} dispatch={dispatch} />
+            <Page3 formState={formState} dispatch={dispatch} />
+
             {/* ============== SUBMIT button ============== */}
             <Button
               type="submit"
               colorScheme="blue"
               isLoading={formState.isLoading}
               onClick={onSubmit}
-              //   isDisabled={
-              //     !formState.values.sendername ||
-              //     !formState.values.company ||
-              //     !formState.values.email ||
-              //     !formState.values.message ||
-              //     !formState.values.contract ||
-              //     !formState.values.seniority ||
-              //     !formState.values.jobdescription ||
-              //     !formState.values.salary ||
-              //     !formState.values.location ||
-              //     !formState.values.workstyle ||
-              //     !formState.values.message ||
-              //     !formState.values.recruitmentprocess
-              //   }
+              isDisabled={
+                !formState.values.sendername ||
+                !formState.values.company ||
+                !formState.values.email ||
+                !formState.values.message ||
+                !formState.values.contract ||
+                !formState.values.seniority ||
+                !formState.values.jobdescription ||
+                !formState.values.salary ||
+                !formState.values.location ||
+                !formState.values.workstyle ||
+                !formState.values.message ||
+                !formState.values.recruitmentprocess
+              }
             >
               Submit
             </Button>
