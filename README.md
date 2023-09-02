@@ -35,6 +35,8 @@ page 3:
 
 🔺 Create multistep: buttons Next and Previous
 
+🔺 Styling
+
 🔺 Refactoring
 
-◿ Bonus: placeholders for company's culture, recruitment process input
+◿ ➕ Bonus: Captcha, track IP address
