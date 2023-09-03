@@ -3,11 +3,20 @@ import { mailOptions, transporter } from "../../config/nodemailer";
 
 // object contains email subjects
 const CONTACT_MESSAGE_FIELDS = {
-  name: "Name",
+  sendername: "Name",
+  company: "Company",
   email: "Email",
   telephone: "Telephone",
-  subject: "Subject",
   message: "Message",
+  contract: "Contract type",
+  seniority: "Seniority level",
+  jobdescription: "Job description",
+  salary: "Salary range",
+  location: "Location",
+  workinghours: "Number of Working hours",
+  workstyle: "Work style",
+  companysculture: "Company's culture",
+  recruitmentprocess: "Recruitment process",
 };
 // generate the email content
 const generateEmailContent = (data) => {
@@ -32,15 +41,15 @@ const generateEmailContent = (data) => {
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const data = req.body;
-    if (!data || !data.name || !data.email || !data.subject || !data.message) {
-      return res.status(400).send({ message: "Bad request" });
+    if (!data) {
+      return res.status(400).send({ message: "Bad request l.36" });
     }
     // ✅
     try {
       await transporter.sendMail({
         ...mailOptions,
         ...generateEmailContent(data),
-        subject: `Message from ${data.name} | ${data.subject}`,
+        subject: `Message from ${data.sendername} | Rec form`,
       });
       return res.status(200).json({ success: true });
     } catch (err) {
