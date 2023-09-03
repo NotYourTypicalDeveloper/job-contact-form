@@ -1,5 +1,5 @@
 import { React, useReducer } from "react";
-import { Container, Button, useToast, Flex } from "@chakra-ui/react";
+import { Container, Button, useToast, Flex, Box, Text } from "@chakra-ui/react";
 import {
   FormContext,
   FormDispatchContext,
@@ -81,10 +81,27 @@ const ContactForm = () => {
   return (
     <FormContext.Provider value={formState}>
       <FormDispatchContext.Provider value={dispatch}>
-        <Container>
+        <Container m={5}>
           {/* TODO: add error message  */}
-          <h2>{currentStep} / 3</h2>
-          <form>
+          {/* ============== Progress bar ============== */}
+          <Flex justifyContent="center" alignItems="center">
+            <Box h={3} w="60%" bgColor="#717ae2" borderRadius={4} mr={2}>
+              <Box
+                w={
+                  currentStep == 1
+                    ? "33.3%"
+                    : currentStep == 2
+                    ? "66.6%"
+                    : "100%"
+                }
+                h="100%"
+                bgColor="#2c1ef1"
+                borderRadius={4}
+              ></Box>
+            </Box>
+            <Text fontSize="small">{currentStep} / 3</Text>
+          </Flex>
+          <form style={{ padding: "2rem" }}>
             {currentStep == 1 && (
               <Page1 formState={formState} dispatch={dispatch} />
             )}
@@ -97,7 +114,7 @@ const ContactForm = () => {
             )}
             <Flex>
               <Button
-                colorScheme="gray"
+                colorScheme="messenger"
                 variant="outline"
                 onClick={onPrevClick}
                 disabled={currentStep == 1}
@@ -106,7 +123,7 @@ const ContactForm = () => {
               </Button>
 
               <Button
-                colorScheme="gray"
+                colorScheme="messenger"
                 variant="outline"
                 onClick={onNextClick}
                 disabled={currentStep == 3}
@@ -118,7 +135,7 @@ const ContactForm = () => {
             {currentStep === 3 && (
               <Button
                 type="submit"
-                colorScheme="blue"
+                colorScheme="messenger"
                 isLoading={isLoading}
                 onClick={onSubmit}
                 isDisabled={

@@ -5,7 +5,7 @@ import ContactForm from "../components/organisms/ContactForm";
 export default function Home() {
   return (
     <section>
-      <Heading>Please fill out this form </Heading>
+      <Heading>Contact Form - job prop </Heading>
       <ContactForm />
     </section>
   );
