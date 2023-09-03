@@ -35,7 +35,7 @@ const RangeSliderBar = ({
       <FormControl id={inputName} marginBottom="4" isRequired={isRequired}>
         <Flex alignItems="baseline">
           <FormLabel>{inputLabel}</FormLabel>
-          <Text fontSize="sm" color="pink">
+          <Text fontSize="sm" color="#828def">
             {currValuesRange}
           </Text>
         </Flex>
