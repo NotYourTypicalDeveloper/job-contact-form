@@ -1,5 +1,5 @@
 import { React, useReducer } from "react";
-import { Container, Button, useToast } from "@chakra-ui/react";
+import { Container, Button, useToast, Flex } from "@chakra-ui/react";
 import {
   FormContext,
   FormDispatchContext,
@@ -25,6 +25,7 @@ export const autoFillStyle = {
 
 const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
+  const { currentStep, isLoading } = formState;
 
   //If user clicks out of input TODO: add this to the reducer
   // const [touched, setTouched] = useState({});
@@ -35,6 +36,16 @@ const ContactForm = () => {
   // const onBlur = ({ target }) =>
   //   setTouched((prev) => ({ ...prev, [target.name]: true }));
 
+  // User clicks "Prev"
+  const onPrevClick = (e) => {
+    e.preventDefault();
+    dispatch({ type: "MOVE_PREV_PAGE" });
+  };
+  // User clicks "Next"
+  const onNextClick = (e) => {
+    e.preventDefault();
+    dispatch({ type: "MOVE_NEXT_PAGE" });
+  };
   // ON SUBMIT
   const onSubmit = async () => {
     // Set isLoading to true
@@ -72,34 +83,62 @@ const ContactForm = () => {
       <FormDispatchContext.Provider value={dispatch}>
         <Container>
           {/* TODO: add error message  */}
+          <h2>{currentStep} / 3</h2>
           <form>
-            <Page1 formState={formState} dispatch={dispatch} />
-            <Page2 formState={formState} dispatch={dispatch} />
-            <Page3 formState={formState} dispatch={dispatch} />
+            {currentStep == 1 && (
+              <Page1 formState={formState} dispatch={dispatch} />
+            )}
+            {currentStep == 2 && (
+              <Page2 formState={formState} dispatch={dispatch} />
+            )}
 
+            {currentStep == 3 && (
+              <Page3 formState={formState} dispatch={dispatch} />
+            )}
+            <Flex>
+              <Button
+                colorScheme="gray"
+                variant="outline"
+                onClick={onPrevClick}
+                disabled={currentStep == 1}
+              >
+                Prev
+              </Button>
+
+              <Button
+                colorScheme="gray"
+                variant="outline"
+                onClick={onNextClick}
+                disabled={currentStep == 3}
+              >
+                Next
+              </Button>
+            </Flex>
             {/* ============== SUBMIT button ============== */}
-            <Button
-              type="submit"
-              colorScheme="blue"
-              isLoading={formState.isLoading}
-              onClick={onSubmit}
-              isDisabled={
-                !formState.values.sendername ||
-                !formState.values.company ||
-                !formState.values.email ||
-                !formState.values.message ||
-                !formState.values.contract ||
-                !formState.values.seniority ||
-                !formState.values.jobdescription ||
-                !formState.values.salary ||
-                !formState.values.location ||
-                !formState.values.workstyle ||
-                !formState.values.message ||
-                !formState.values.recruitmentprocess
-              }
-            >
-              Submit
-            </Button>
+            {currentStep === 3 && (
+              <Button
+                type="submit"
+                colorScheme="blue"
+                isLoading={isLoading}
+                onClick={onSubmit}
+                isDisabled={
+                  !formState.values.sendername ||
+                  !formState.values.company ||
+                  !formState.values.email ||
+                  !formState.values.message ||
+                  !formState.values.contract ||
+                  !formState.values.seniority ||
+                  !formState.values.jobdescription ||
+                  !formState.values.salary ||
+                  !formState.values.location ||
+                  !formState.values.workstyle ||
+                  !formState.values.message ||
+                  !formState.values.recruitmentprocess
+                }
+              >
+                Submit
+              </Button>
+            )}
           </form>
         </Container>
       </FormDispatchContext.Provider>
