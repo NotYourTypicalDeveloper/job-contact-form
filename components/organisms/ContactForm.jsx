@@ -47,16 +47,19 @@ const ContactForm = () => {
       // send contact form
       await sendContactForm(formState.values);
       // setTouched({});
-      // dispatch({
-      //   type: "RESET_FORM",
-      // });
-
+      dispatch({
+        type: "TOGGLE_ISLOADING",
+        payload: false,
+      });
       // show success message
       successMsg({
         title: "Message sent! ✨",
         status: "success",
         duration: 2000,
         position: "top",
+      });
+      dispatch({
+        type: "RESET_FORM",
       });
     } catch (error) {
       // TODO: add error handling

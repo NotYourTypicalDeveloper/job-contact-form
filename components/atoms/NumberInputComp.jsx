@@ -38,9 +38,7 @@ const NumberInputComp = ({
           <NumberDecrementStepper />
         </NumberInputStepper>
       </NumberInput>
-      <FormErrorMessage>
-        {inputValue > 45 ? "this is too much" : ""}
-      </FormErrorMessage>
+      <FormErrorMessage></FormErrorMessage>
     </FormControl>
   );
 };

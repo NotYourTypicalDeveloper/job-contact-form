@@ -18,8 +18,6 @@ const Page3 = ({ formState, dispatch }) => {
         inputName="workinghours"
         inputLabel="Number of work hours / week"
         inputValue={formState.values.workinghours}
-        minVal={1}
-        maxVal={45}
         isRequired
         dispatch={dispatch}
       />
