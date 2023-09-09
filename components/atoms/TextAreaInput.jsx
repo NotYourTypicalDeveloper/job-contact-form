@@ -13,7 +13,6 @@ const TextAreaInput = ({
   isInvalid,
   isRequired,
   dispatch,
-  onBlur,
   placeholder,
 }) => {
   const handleChange = (e) => {
@@ -21,6 +20,14 @@ const TextAreaInput = ({
     dispatch({
       type: "UPDATE_FIELD",
       payload: { fieldName: name, newValue: value },
+    });
+  };
+
+  const onBlur = (e) => {
+    const { name } = e.target;
+    dispatch({
+      type: "UPDATE_ONBLUR",
+      payload: { fieldName: name },
     });
   };
   return (

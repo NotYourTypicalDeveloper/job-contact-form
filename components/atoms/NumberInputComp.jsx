@@ -24,6 +24,13 @@ const NumberInputComp = ({
       payload: { fieldName: name, newValue: value },
     });
   };
+  const onBlur = (e) => {
+    const { name } = e.target;
+    dispatch({
+      type: "UPDATE_ONBLUR",
+      payload: { fieldName: name },
+    });
+  };
   return (
     <FormControl id={inputName} marginBottom={4} isRequired={isRequired}>
       <FormLabel>{inputLabel}</FormLabel>
@@ -31,6 +38,7 @@ const NumberInputComp = ({
         <NumberInputField
           name={inputName}
           value={inputValue}
+          onBlur={onBlur}
           onChange={handleChange}
         />
         <NumberInputStepper>

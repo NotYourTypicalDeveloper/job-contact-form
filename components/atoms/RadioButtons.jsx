@@ -38,6 +38,14 @@ const RadioButtons = ({
     });
   }
 
+  const onBlur = (e) => {
+    const { name } = e.target;
+    dispatch({
+      type: "UPDATE_ONBLUR",
+      payload: { fieldName: name },
+    });
+  };
+
   return (
     <>
       <FormControl
@@ -50,6 +58,7 @@ const RadioButtons = ({
         <RadioGroup
           name={`${inputName}`}
           value={formState.values[inputName]}
+          onBlur={onBlur}
           errorBorderColor="red.300"
           display="flex"
         >

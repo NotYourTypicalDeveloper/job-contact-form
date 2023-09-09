@@ -15,7 +15,6 @@ const SingleLineInput = ({
   inputValue,
   isInvalid,
   isRequired,
-  onBlur,
   dispatch,
 }) => {
   const handleChange = (e) => {
@@ -25,6 +24,15 @@ const SingleLineInput = ({
       payload: { fieldName: name, newValue: value },
     });
   };
+
+  const onBlur = (e) => {
+    const { name } = e.target;
+    dispatch({
+      type: "UPDATE_ONBLUR",
+      payload: { fieldName: name },
+    });
+  };
+
   return (
     <FormControl
       id={inputName}
@@ -42,6 +50,7 @@ const SingleLineInput = ({
         onChange={handleChange}
         onBlur={onBlur}
       />
+
       <FormErrorMessage>required</FormErrorMessage>
     </FormControl>
   );

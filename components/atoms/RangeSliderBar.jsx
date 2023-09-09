@@ -30,6 +30,13 @@ const RangeSliderBar = ({
     });
   }
 
+  const onBlur = () => {
+    dispatch({
+      type: "UPDATE_ONBLUR",
+      payload: { fieldName: inputName },
+    });
+  };
+
   return (
     <Box maxW="sm">
       <FormControl id={inputName} marginBottom="4" isRequired={isRequired}>
@@ -41,11 +48,13 @@ const RangeSliderBar = ({
         </Flex>
 
         <RangeSlider
+          name={inputName}
           aria-label={["min", "max"]}
           defaultValue={[55000, 80000]}
           min={40000} // Set the minimum value
           max={150000} //
           onChangeEnd={handleSliderChangeEnd}
+          onBlur={onBlur}
         >
           <RangeSliderTrack>
             <RangeSliderFilledTrack />
