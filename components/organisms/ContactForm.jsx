@@ -23,16 +23,10 @@ export const autoFillStyle = {
 
 const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
-  const { currentStep, isLoading } = formState;
-
-  //If user clicks out of input TODO: add this to the reducer
-  // const [touched, setTouched] = useState({});
+  const { currentStep, isLoading, values } = formState;
 
   //for the success message pop-up
   const successMsg = useToast();
-
-  // const onBlur = ({ target }) =>
-  //   setTouched((prev) => ({ ...prev, [target.name]: true }));
 
   // User clicks "Prev"
   const onPrevClick = (e) => {
@@ -46,7 +40,6 @@ const ContactForm = () => {
   };
   // ON SUBMIT
   const onSubmit = async () => {
-    // Set isLoading to true
     dispatch({
       type: "TOGGLE_ISLOADING",
       payload: true,
@@ -55,7 +48,6 @@ const ContactForm = () => {
     try {
       // send contact form
       await sendContactForm(formState.values);
-      // setTouched({});
       dispatch({
         type: "TOGGLE_ISLOADING",
         payload: false,
@@ -71,7 +63,10 @@ const ContactForm = () => {
         type: "RESET_FORM",
       });
     } catch (error) {
-      // TODO: add error handling
+      dispatch({
+        type: "UPDATE_FORM_ERROR",
+        payload: `Oops something went wrong! ${error}`,
+      });
       console.log("error submitting form");
     }
   };
@@ -80,7 +75,8 @@ const ContactForm = () => {
     <FormContext.Provider value={formState}>
       <FormDispatchContext.Provider value={dispatch}>
         <Container m={5}>
-          {/* TODO: add error message  */}
+          <Text> {formState.globalErrorMsg}</Text>
+
           {/* ============== Progress bar ============== */}
           <Flex justifyContent="center" alignItems="center">
             <Box h={3} w="60%" bgColor="#717ae2" borderRadius={4} mr={2}>
@@ -137,18 +133,18 @@ const ContactForm = () => {
                 isLoading={isLoading}
                 onClick={onSubmit}
                 isDisabled={
-                  !formState.values.sendername ||
-                  !formState.values.company ||
-                  !formState.values.email ||
-                  !formState.values.message ||
-                  !formState.values.contract ||
-                  !formState.values.seniority ||
-                  !formState.values.jobdescription ||
-                  !formState.values.salary ||
-                  !formState.values.location ||
-                  !formState.values.workstyle ||
-                  !formState.values.message ||
-                  !formState.values.recruitmentprocess
+                  !values.sendername ||
+                  !values.company ||
+                  !values.email ||
+                  !values.message ||
+                  !values.contract ||
+                  !values.seniority ||
+                  !values.jobdescription ||
+                  values.salary === "Move the slider" ||
+                  !values.location ||
+                  !values.workstyle ||
+                  !values.message ||
+                  !values.recruitmentprocess
                 }
               >
                 Submit

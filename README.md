@@ -1,5 +1,3 @@
-## TO DO
-
 🔺 add fields:
 
 page 1:
