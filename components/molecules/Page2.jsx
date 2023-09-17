@@ -1,4 +1,5 @@
 import React from "react";
+import { Flex } from "@chakra-ui/react";
 import RadioButtons from "../atoms/RadioButtons.jsx";
 import CheckBoxes from "../atoms/CheckBoxes.jsx";
 import TextAreaInput from "../atoms/TextAreaInput.jsx";
@@ -21,7 +22,7 @@ const Page2 = ({ formState, dispatch }) => {
   const { isTouched } = formState;
 
   return (
-    <>
+    <Flex flexDir="column" justifyContent="space-evenly">
       {/* ------- Contract type -------- */}
       <RadioButtons
         radioLabel="Contract Type"
@@ -69,7 +70,7 @@ const Page2 = ({ formState, dispatch }) => {
         isRequired={true}
         dispatch={dispatch}
       />
-    </>
+    </Flex>
   );
 };
 

@@ -1,4 +1,6 @@
 import React from "react";
+import { Flex } from "@chakra-ui/react";
+
 import DropdownMenu from "../atoms/DropdownMenu.jsx";
 import TextAreaInput from "../atoms/TextAreaInput.jsx";
 import NumberInputComp from "../atoms/NumberInputComp.jsx";
@@ -16,7 +18,7 @@ const Page3 = ({ formState, dispatch }) => {
 
   const { isTouched } = formState;
   return (
-    <>
+    <Flex flexDir="column" justifyContent="space-evenly">
       {/* ------- Weekly work hours------- */}
       <NumberInputComp
         inputName="workinghours"
@@ -55,7 +57,7 @@ const Page3 = ({ formState, dispatch }) => {
         isRequired={true}
         dispatch={dispatch}
       />
-    </>
+    </Flex>
   );
 };
 

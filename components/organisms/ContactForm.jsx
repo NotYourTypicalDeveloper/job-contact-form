@@ -20,15 +20,6 @@ import { sendContactForm } from "../../lib/api";
 import Page1 from "../molecules/Page1.jsx";
 import Page2 from "../molecules/Page2.jsx";
 import Page3 from "../molecules/Page3.jsx";
-import { EmailIcon } from "@chakra-ui/icons";
-
-// styling
-export const autoFillStyle = {
-  border: "1px solid transparent",
-  textFillColor: "white",
-  boxShadow: "0 0 0 1000px #1b1b1b inset",
-  transition: "background-color 5000s ease-in-out 0s",
-};
 
 const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
@@ -115,7 +106,7 @@ const ContactForm = () => {
             </Text>
           </Flex>
           <form style={{ padding: "2rem" }}>
-            <Box minH="500px">
+            <Box minH={{ base: "533px", lg: "650px" }}>
               {currentStep == 1 && (
                 <Page1 formState={formState} dispatch={dispatch} />
               )}
@@ -179,7 +170,7 @@ const ContactForm = () => {
                   !values.recruitmentprocess
                 }
               >
-                Submit <EmailIcon ml={2} />
+                Submit
               </Button>
             )}
           </form>

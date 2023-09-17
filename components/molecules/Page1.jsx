@@ -1,4 +1,5 @@
 import React from "react";
+import { Flex } from "@chakra-ui/react";
 import SingleLineInput from "../atoms/SingleLineInput.jsx";
 import TextAreaInput from "../atoms/TextAreaInput.jsx";
 
@@ -7,7 +8,7 @@ const Page1 = ({ formState, dispatch }) => {
   const { isTouched } = formState;
 
   return (
-    <>
+    <Flex flexDir="column" justifyContent="space-evenly">
       {/* ------- Name -------- */}
       <SingleLineInput
         inputLabel="Name"
@@ -58,7 +59,7 @@ const Page1 = ({ formState, dispatch }) => {
         isRequired={true}
         dispatch={dispatch}
       />
-    </>
+    </Flex>
   );
 };
 
