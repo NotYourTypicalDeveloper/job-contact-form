@@ -13,8 +13,6 @@ import Page1 from "../molecules/Page1.jsx";
 import Page2 from "../molecules/Page2.jsx";
 import Page3 from "../molecules/Page3.jsx";
 
-// FIXME: Fix onBlur, isInvalid
-
 // styling
 export const autoFillStyle = {
   border: "1px solid transparent",

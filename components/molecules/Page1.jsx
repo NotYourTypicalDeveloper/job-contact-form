@@ -47,6 +47,7 @@ const Page1 = ({ formState, dispatch }) => {
         isInvalid={isTouched.telephone && telephone === ""}
         isRequired={true}
         dispatch={dispatch}
+        formState={formState}
       />
       {/* ------- Message ------- */}
       <TextAreaInput
