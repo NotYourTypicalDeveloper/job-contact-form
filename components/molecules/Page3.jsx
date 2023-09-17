@@ -13,6 +13,8 @@ const WorkStyle_Options = [
 const Page3 = ({ formState, dispatch }) => {
   const { workinghours, companysculture, recruitmentprocess } =
     formState.values;
+
+  const { isTouched } = formState;
   return (
     <>
       {/* ------- Weekly work hours------- */}
@@ -20,7 +22,7 @@ const Page3 = ({ formState, dispatch }) => {
         inputName="workinghours"
         inputLabel="Number of work hours / week"
         inputValue={workinghours}
-        isInvalid={formState.isTouched.workinghours && workinghours === ""}
+        isInvalid={isTouched.workinghours && workinghours === ""}
         isRequired
         dispatch={dispatch}
       />
@@ -39,9 +41,7 @@ const Page3 = ({ formState, dispatch }) => {
         inputName="companysculture"
         inputValue={companysculture}
         placeholder="Company's values, benefits, pros and cons"
-        isInvalid={
-          formState.isTouched.companysculture && companysculture === ""
-        }
+        isInvalid={isTouched.companysculture && companysculture === ""}
         isRequired={true}
         dispatch={dispatch}
       />
@@ -51,9 +51,7 @@ const Page3 = ({ formState, dispatch }) => {
         inputName="recruitmentprocess"
         placeholder="Describe the steps and timeframe"
         inputValue={recruitmentprocess}
-        isInvalid={
-          formState.isTouched.recruitmentprocess && recruitmentprocess === ""
-        }
+        isInvalid={isTouched.recruitmentprocess && recruitmentprocess === ""}
         isRequired={true}
         dispatch={dispatch}
       />

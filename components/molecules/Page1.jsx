@@ -4,6 +4,8 @@ import TextAreaInput from "../atoms/TextAreaInput.jsx";
 
 const Page1 = ({ formState, dispatch }) => {
   const { sendername, company, email, telephone, message } = formState.values;
+  const { isTouched } = formState;
+
   return (
     <>
       {/* ------- Name -------- */}
@@ -12,7 +14,7 @@ const Page1 = ({ formState, dispatch }) => {
         inputName="sendername"
         inputType="text"
         inputValue={sendername}
-        isInvalid={formState.isTouched.sendername && sendername === ""}
+        isInvalid={isTouched.sendername && sendername === ""}
         isRequired={true}
         dispatch={dispatch}
       />
@@ -22,7 +24,7 @@ const Page1 = ({ formState, dispatch }) => {
         inputName="company"
         inputType="text"
         inputValue={company}
-        isInvalid={formState.isTouched.company && company === ""}
+        isInvalid={isTouched.company && company === ""}
         isRequired={true}
         dispatch={dispatch}
       />
@@ -32,7 +34,7 @@ const Page1 = ({ formState, dispatch }) => {
         inputName="email"
         inputType="email"
         inputValue={email}
-        isInvalid={formState.isTouched.email && email === ""}
+        isInvalid={isTouched.email && email === ""}
         isRequired={true}
         dispatch={dispatch}
       />
@@ -42,7 +44,7 @@ const Page1 = ({ formState, dispatch }) => {
         inputName="telephone"
         inputType="tel"
         inputValue={telephone}
-        isInvalid={formState.isTouched.telephone && telephone === ""}
+        isInvalid={isTouched.telephone && telephone === ""}
         isRequired={true}
         dispatch={dispatch}
       />
@@ -51,7 +53,7 @@ const Page1 = ({ formState, dispatch }) => {
         inputLabel="Message"
         inputName="message"
         inputValue={message}
-        isInvalid={formState.isTouched.message && message === ""}
+        isInvalid={isTouched.message && message === ""}
         isRequired={true}
         dispatch={dispatch}
       />
