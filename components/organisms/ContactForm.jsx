@@ -74,7 +74,7 @@ const ContactForm = () => {
   return (
     <FormContext.Provider value={formState}>
       <FormDispatchContext.Provider value={dispatch}>
-        <Container m={5}>
+        <Container mt={5}>
           <Text> {formState.globalErrorMsg}</Text>
 
           {/* ============== Progress bar ============== */}

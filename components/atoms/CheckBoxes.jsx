@@ -1,14 +1,13 @@
 import { React } from "react";
-import { Checkbox, FormLabel, Stack, Grid } from "@chakra-ui/react";
+import { Checkbox, FormLabel, FormControl, Grid } from "@chakra-ui/react";
 
 const CheckBoxes = ({
   checkboxGroupLabel,
   inputName,
   checkboxOptions,
   selectedValues,
-  // isInvalid,
   dispatch,
-  // onBlur
+  isRequired,
 }) => {
   const handleCheckboxChange = (e) => {
     if (e.target.checked) {
@@ -53,13 +52,13 @@ const CheckBoxes = ({
   });
 
   return (
-    <Stack>
+    <FormControl id={inputName} marginBottom="4" isRequired={isRequired}>
       <FormLabel>{checkboxGroupLabel}</FormLabel>
       <Grid templateColumns="repeat(3, 1fr)" gap={3}>
         {checkboxElems}
       </Grid>
       {selectedValues}
-    </Stack>
+    </FormControl>
   );
 };
 

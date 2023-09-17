@@ -38,7 +38,7 @@ const Page2 = ({ formState, dispatch }) => {
         checkboxOptions={Seniority_Options}
         dispatch={dispatch}
         selectedValues={seniority}
-        isRequired={false}
+        isRequired={true}
       />
       {/* ------- Job description------- */}
       <TextAreaInput
