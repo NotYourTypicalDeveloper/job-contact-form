@@ -40,3 +40,8 @@ page 3:
 🔺 Refactoring
 
 ◿ ➕ Bonus: Captcha, track IP address
+
+TO DO: validation on Submit only with isInvalid prop
+
+- seniority (checkboxes)
+- work style (dropdown)

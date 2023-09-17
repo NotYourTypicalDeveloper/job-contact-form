@@ -17,6 +17,7 @@ const Seniority_Options = [
 ];
 
 const Page2 = ({ formState, dispatch }) => {
+  const { jobdescription, salary, location } = formState.values;
   return (
     <>
       {/* ------- Contract type -------- */}
@@ -42,7 +43,8 @@ const Page2 = ({ formState, dispatch }) => {
         inputLabel="Job Description"
         inputName="jobdescription"
         placeholder="Please include tasks, complete Tech stack and level required"
-        inputValue={formState.values.jobdescription}
+        inputValue={jobdescription}
+        isInvalid={formState.isTouched.jobdescription && jobdescription === ""}
         isRequired={true}
         dispatch={dispatch}
       />
@@ -50,16 +52,19 @@ const Page2 = ({ formState, dispatch }) => {
       <RangeSliderBar
         inputLabel="Salary range (£)"
         inputName="salary"
+        isInvalid={formState.isTouched.salary}
         isRequired={true}
         dispatch={dispatch}
-        currValuesRange={formState.values.salary}
+        currValuesRange={salary}
       />
       {/* ------- Location ------- */}
       <SingleLineInput
         inputLabel="Location"
         inputName="location"
         inputType="text"
-        inputValue={formState.values.location}
+        inputValue={location}
+        isInvalid={formState.isTouched.location && location === ""}
+        isRequired={true}
         dispatch={dispatch}
       />
     </>

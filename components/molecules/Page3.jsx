@@ -11,13 +11,16 @@ const WorkStyle_Options = [
 ];
 
 const Page3 = ({ formState, dispatch }) => {
+  const { workinghours, companysculture, recruitmentprocess } =
+    formState.values;
   return (
     <>
       {/* ------- Weekly work hours------- */}
       <NumberInputComp
         inputName="workinghours"
         inputLabel="Number of work hours / week"
-        inputValue={formState.values.workinghours}
+        inputValue={workinghours}
+        isInvalid={formState.isTouched.workinghours && workinghours === ""}
         isRequired
         dispatch={dispatch}
       />
@@ -34,8 +37,11 @@ const Page3 = ({ formState, dispatch }) => {
       <TextAreaInput
         inputLabel="Describe the company's culture"
         inputName="companysculture"
-        inputValue={formState.values.companysculture}
+        inputValue={companysculture}
         placeholder="Company's values, benefits, pros and cons"
+        isInvalid={
+          formState.isTouched.companysculture && companysculture === ""
+        }
         isRequired={true}
         dispatch={dispatch}
       />
@@ -44,7 +50,10 @@ const Page3 = ({ formState, dispatch }) => {
         inputLabel="What is the recruitment process"
         inputName="recruitmentprocess"
         placeholder="Describe the steps and timeframe"
-        inputValue={formState.values.recruitmentprocess}
+        inputValue={recruitmentprocess}
+        isInvalid={
+          formState.isTouched.recruitmentprocess && recruitmentprocess === ""
+        }
         isRequired={true}
         dispatch={dispatch}
       />
