@@ -21,14 +21,31 @@ const SingleLineInput = ({
 }) => {
   const [errorMsg, setErrorMsg] = useState("");
 
+  const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+
+  function validateEmail(email) {
+    return emailRegex.test(email);
+  }
+  const regexTel = /^[0-9]+$/;
+  function validatePhone(number) {
+    return regexTel.test(number);
+  }
   const handleChange = (e) => {
     const { name, value, type } = e.target;
+    // if field is cleared, reset error message
+    if (!value) {
+      setErrorMsg("");
+    }
+    // if input is "telephone"
     if (type === "tel") {
-      const regex = new RegExp("^[0-9]+$");
-      if (!regex.test(value)) {
+      const isValidPhone = validatePhone(value);
+      if (!isValidPhone) {
         setErrorMsg("please enter only numbers");
+      } else {
+        setErrorMsg("");
       }
     }
+
     dispatch({
       type: "UPDATE_FIELD",
       payload: { fieldName: name, newValue: value },
@@ -36,7 +53,17 @@ const SingleLineInput = ({
   };
 
   const onBlur = (e) => {
-    const { name } = e.target;
+    const { name, type, value } = e.target;
+    if (type === "email") {
+      const isValidEmail = validateEmail(value);
+
+      if (!isValidEmail) {
+        setErrorMsg("Email format is wrong, must include @, and a dot");
+      } else {
+        setErrorMsg("");
+      }
+    }
+
     dispatch({
       type: "UPDATE_ONBLUR",
       payload: { fieldName: name },
@@ -61,7 +88,6 @@ const SingleLineInput = ({
         onBlur={onBlur}
         borderColor={errorMsg ? "#6668f0" : "initial"}
       />
-
       <FormErrorMessage>required</FormErrorMessage>
       {errorMsg && inputValue && (
         <Text
