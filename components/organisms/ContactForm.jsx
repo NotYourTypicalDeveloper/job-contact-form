@@ -1,5 +1,13 @@
 import { React, useReducer } from "react";
-import { Container, Button, useToast, Flex, Box, Text } from "@chakra-ui/react";
+import {
+  Container,
+  Button,
+  useToast,
+  Flex,
+  Box,
+  Text,
+  Heading,
+} from "@chakra-ui/react";
 import {
   FormContext,
   FormDispatchContext,
@@ -12,6 +20,7 @@ import { sendContactForm } from "../../lib/api";
 import Page1 from "../molecules/Page1.jsx";
 import Page2 from "../molecules/Page2.jsx";
 import Page3 from "../molecules/Page3.jsx";
+import { EmailIcon } from "@chakra-ui/icons";
 
 // styling
 export const autoFillStyle = {
@@ -74,7 +83,15 @@ const ContactForm = () => {
   return (
     <FormContext.Provider value={formState}>
       <FormDispatchContext.Provider value={dispatch}>
-        <Container mt={5}>
+        <Container maxW="container.md" pt={10}>
+          <Heading
+            as="h1"
+            bgGradient="linear(to-l, #7928CA, #41d7ee)"
+            bgClip="text"
+            mb={8}
+          >
+            JOB CONTACT FORM
+          </Heading>
           <Text> {formState.globalErrorMsg}</Text>
 
           {/* ============== Progress bar ============== */}
@@ -93,34 +110,49 @@ const ContactForm = () => {
                 borderRadius={4}
               ></Box>
             </Box>
-            <Text fontSize="small">{currentStep} / 3</Text>
+            <Text fontWeight="extrabold" fontSize="small">
+              {currentStep} / 3
+            </Text>
           </Flex>
           <form style={{ padding: "2rem" }}>
-            {currentStep == 1 && (
-              <Page1 formState={formState} dispatch={dispatch} />
-            )}
-            {currentStep == 2 && (
-              <Page2 formState={formState} dispatch={dispatch} />
-            )}
+            <Box minH="500px">
+              {currentStep == 1 && (
+                <Page1 formState={formState} dispatch={dispatch} />
+              )}
+              {currentStep == 2 && (
+                <Page2 formState={formState} dispatch={dispatch} />
+              )}
 
-            {currentStep == 3 && (
-              <Page3 formState={formState} dispatch={dispatch} />
-            )}
+              {currentStep == 3 && (
+                <Page3 formState={formState} dispatch={dispatch} />
+              )}
+            </Box>
             <Flex>
               <Button
-                colorScheme="messenger"
+                color="#5045f0"
+                borderColor="#5045f0"
                 variant="outline"
                 onClick={onPrevClick}
                 disabled={currentStep == 1}
+                mr={4}
+                _hover={{
+                  bgColor: "#5045f0",
+                  color: "white",
+                }}
               >
                 Prev
               </Button>
 
               <Button
-                colorScheme="messenger"
+                color="#5045f0"
+                borderColor="#5045f0"
                 variant="outline"
                 onClick={onNextClick}
                 disabled={currentStep == 3}
+                _hover={{
+                  bgColor: "#5045f0",
+                  color: "white",
+                }}
               >
                 Next
               </Button>
@@ -147,7 +179,7 @@ const ContactForm = () => {
                   !values.recruitmentprocess
                 }
               >
-                Submit
+                Submit <EmailIcon ml={2} />
               </Button>
             )}
           </form>

@@ -1,11 +1,11 @@
 import React from "react";
-import { Container } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 const AppContainer = ({ children }) => {
   return (
-    <Container textAlign="center" fontSize="2xl" p="1em">
+    <Box textAlign="center" fontSize="2xl" mx={0}>
       {children}
-    </Container>
+    </Box>
   );
 };
 export default AppContainer;

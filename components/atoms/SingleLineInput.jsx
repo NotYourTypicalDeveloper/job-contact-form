@@ -73,7 +73,7 @@ const SingleLineInput = ({
   return (
     <FormControl
       id={inputName}
-      marginBottom={4}
+      mb={5}
       isInvalid={isInvalid}
       isRequired={isRequired}
     >

@@ -39,7 +39,7 @@ const RangeSliderBar = ({
 
   return (
     <Box maxW="sm">
-      <FormControl id={inputName} marginBottom="4" isRequired={isRequired}>
+      <FormControl id={inputName} mb={5} isRequired={isRequired}>
         <Flex alignItems="baseline">
           <FormLabel>{inputLabel}</FormLabel>
           <Text fontSize="sm" color="#828def">

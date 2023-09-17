@@ -52,7 +52,7 @@ const CheckBoxes = ({
   });
 
   return (
-    <FormControl id={inputName} marginBottom="4" isRequired={isRequired}>
+    <FormControl id={inputName} mb={5} isRequired={isRequired}>
       <FormLabel>{checkboxGroupLabel}</FormLabel>
       <Grid templateColumns="repeat(3, 1fr)" gap={3}>
         {checkboxElems}

@@ -32,7 +32,7 @@ const NumberInputComp = ({
     });
   };
   return (
-    <FormControl id={inputName} marginBottom={4} isRequired={isRequired}>
+    <FormControl id={inputName} mb={5} isRequired={isRequired}>
       <FormLabel>{inputLabel}</FormLabel>
       <NumberInput step={5}>
         <NumberInputField

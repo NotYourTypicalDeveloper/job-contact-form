@@ -8,6 +8,7 @@ const customTheme = {
       body: {
         backgroundColor: "#1b1919",
         color: "lightGrey",
+        margin: 0,
       },
     },
   },

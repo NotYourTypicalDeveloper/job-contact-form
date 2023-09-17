@@ -32,7 +32,7 @@ const DropdownMenu = ({
 
   return (
     <>
-      <FormControl id={inputName} marginBottom="4" isRequired={isRequired}>
+      <FormControl id={inputName} mb={5} isRequired={isRequired}>
         <FormLabel>{ddLabel}</FormLabel>
         <Select onChange={handleChange} placeholder="Select option">
           {dropdownOptionsElems}
