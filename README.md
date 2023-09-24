@@ -1,4 +1,6 @@
-# 👔 Job posting Multi-step form
+# 👔 Recruiter contact form
+
+### Full stack multi-step form
 
 - Sends email to my mailbox
 - Target is mostly companies, recruiters to offer
@@ -11,6 +13,7 @@
 - JavaScript
 - Chakra-UI
 - Nodemailer
+- NodeJS
 
 ## 🔺 Features:
 
