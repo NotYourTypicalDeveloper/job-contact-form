@@ -57,7 +57,6 @@ const CheckBoxes = ({
       <Grid templateColumns="repeat(3, 1fr)" gap={3}>
         {checkboxElems}
       </Grid>
-      {selectedValues}
     </FormControl>
   );
 };

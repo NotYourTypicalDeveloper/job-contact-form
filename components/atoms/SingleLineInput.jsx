@@ -42,6 +42,15 @@ const SingleLineInput = ({
         setErrorMsg("");
       }
     }
+    if (type === "email") {
+      const isValidEmail = validateEmail(value);
+
+      if (!isValidEmail) {
+        setErrorMsg("Email format must include @, and a dot");
+      } else {
+        setErrorMsg("");
+      }
+    }
 
     dispatch({
       type: "UPDATE_FIELD",
