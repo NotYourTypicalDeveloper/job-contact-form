@@ -33,16 +33,24 @@
 
 ## 📸 screenshots
 
-### Page 1 mobile view
+### \_\_\_Page 1 mobile view
 
 ![Alt text](Screenshots/page1_mobile_view.png)
 
-### Page 1 desktop view, with validation
+### \_\_\_Page 1 desktop view, with validation
 
 ![Alt text](Screenshots/page1_with_valid.png)
 ![Alt text](Screenshots/page1_with_valid2.png)
 
-### Page 2 and 3 desktop view
+### \_\_\_Page 2 and 3 desktop view
 
 ![Alt text](Screenshots/page2_desktop_view.png)
 ![Alt text](Screenshots/page3_desktop_view.png)
+
+### \_\_\_Success message
+
+![Alt text](Screenshots/success_message.png)
+
+### \_\_\_Example of received email
+
+![Alt text](Screenshots/email_example.png)
