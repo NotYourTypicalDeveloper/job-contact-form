@@ -1,45 +1,45 @@
-🔺 add fields:
+# 👔 Job posting Multi-step form
 
-page 1:
+- Sends email to my mailbox
+- Target is mostly companies, recruiters to offer
+- User fills out the form, presses submit, email is sent to gmail account
 
-- name (single line text)
-- company (single line text)
-- email (single line text - type email)
-- phone (single line text - type telephone numbers)
-- message (multi-line text)
+## ⚙️ Tech Stack
 
-page 2:
+- NextJS
+- ReactJS
+- JavaScript
+- Chakra-UI
+- Nodemailer
 
-- contract type (radio buttons)
-- seniority level (check boxes)
-- job description (multi-line text)
-- salary range (single line text to become slider potentially)
-- location (single line text)
+## 🔺 Features:
 
-page 3:
+- Multi-step form
+- Back & Next buttons for the navigation
+- Graphical progress bar and page number to track the form filling journey
+- Various diverse input types: Radio buttons, checkboxes, single-line input, multi-line text area, number input, range slider
+- Input validation on typing and onBlur
+- Submit button is greyed out until all the mandatory fields are filled out
+- Success message after successful submission of the form
+- Clears out form after successful submission
 
-- number of working hours (number input)
-- workstyle (dropdown)
-- describe the company's culture (multi-line text)
-- recruitment process (multi-line text)
+➕ Bonus features to add later:
 
-🔺 Update the submit button
+- Captcha validation
+- IP Address tracking
 
-- send form
-- clear inputs
-- success message
+## 📸 screenshots
 
-🔺 Update validation (on Blur and on Submit)
+### Page 1 mobile view
 
-🔺 Create multistep: buttons Next and Previous
+![Alt text](Screenshots/page1_mobile_view.png)
 
-🔺 Styling
+### Page 1 desktop view, with validation
 
-🔺 Refactoring
+![Alt text](Screenshots/page1_with_valid.png)
+![Alt text](Screenshots/page1_with_valid2.png)
 
-◿ ➕ Bonus: Captcha, track IP address
+### Page 2 and 3 desktop view
 
-TO DO: validation on Submit only with isInvalid prop
-
-- seniority (checkboxes)
-- work style (dropdown)
+![Alt text](Screenshots/page2_desktop_view.png)
+![Alt text](Screenshots/page3_desktop_view.png)
