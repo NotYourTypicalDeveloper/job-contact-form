@@ -106,7 +106,7 @@ const ContactForm = () => {
             </Text>
           </Flex>
           <form style={{ padding: "2rem" }}>
-            <Box minH={{ base: "533px", lg: "650px" }}>
+            <Box>
               {currentStep == 1 && (
                 <Page1 formState={formState} dispatch={dispatch} />
               )}
@@ -118,7 +118,7 @@ const ContactForm = () => {
                 <Page3 formState={formState} dispatch={dispatch} />
               )}
             </Box>
-            <Flex>
+            <Flex flexDir={{ base: "column", md: "row" }} mb={5}>
               <Button
                 color="#5045f0"
                 borderColor="#5045f0"
@@ -130,6 +130,7 @@ const ContactForm = () => {
                   bgColor: "#5045f0",
                   color: "white",
                 }}
+                w={{ base: "100%", md: "30%", lg: "20%" }}
               >
                 Prev
               </Button>
@@ -144,6 +145,7 @@ const ContactForm = () => {
                   bgColor: "#5045f0",
                   color: "white",
                 }}
+                w={{ base: "100%", md: "30%", lg: "20%" }}
               >
                 Next
               </Button>
@@ -151,6 +153,7 @@ const ContactForm = () => {
             {/* ============== SUBMIT button ============== */}
             {currentStep === 3 && (
               <Button
+                w={{ base: "100%", md: "30%" }}
                 type="submit"
                 colorScheme="messenger"
                 isLoading={isLoading}

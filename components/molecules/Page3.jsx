@@ -1,9 +1,8 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
-
-import DropdownMenu from "../atoms/DropdownMenu.jsx";
 import TextAreaInput from "../atoms/TextAreaInput.jsx";
 import NumberInputComp from "../atoms/NumberInputComp.jsx";
+import RadioButtons from "../atoms/RadioButtons.jsx";
 
 const WorkStyle_Options = [
   "fully remote",
@@ -28,14 +27,13 @@ const Page3 = ({ formState, dispatch }) => {
         isRequired
         dispatch={dispatch}
       />
-      {/* ------- Work style ------- */}
-      <DropdownMenu
-        ddOptions={WorkStyle_Options}
-        ddLabel="Work style"
+      <RadioButtons
+        radioLabel="Work style"
         inputName="workstyle"
-        dispatch={dispatch}
         formState={formState}
+        radioOptions={WorkStyle_Options}
         isRequired={true}
+        dispatch={dispatch}
       />
       {/* ------- Company's culture ------- */}
       <TextAreaInput

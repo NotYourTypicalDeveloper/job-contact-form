@@ -12,7 +12,6 @@ export default function Home() {
         pos="absolute"
         top="10vh"
         left="9vw"
-        zIndex={-1}
       />
       <Shape1
         w={{ base: "4rem", md: "6rem" }}

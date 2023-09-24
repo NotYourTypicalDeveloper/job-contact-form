@@ -5,10 +5,20 @@ const customTheme = {
   styles: {
     global: {
       // Custom global styles go here
+      html: {
+        backgroundColor: "blue",
+        height: "100%",
+      },
+      "#__next": {
+        height: "100%",
+      },
       body: {
         backgroundColor: "#1b1919",
         color: "lightGrey",
         margin: 0,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
       },
       input: {
         _autofill: {
