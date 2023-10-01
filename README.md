@@ -1,5 +1,7 @@
 # 👔 Recruiter contact form
 
+## Link to the live application: [here](https://job-contact-form.vercel.app/) !
+
 ### Full stack multi-step form
 
 - Sends email to my mailbox
@@ -14,6 +16,7 @@
 - Chakra-UI
 - Nodemailer
 - NodeJS
+- Vercel (deployment)
 
 ## 🔺 Features:
 
