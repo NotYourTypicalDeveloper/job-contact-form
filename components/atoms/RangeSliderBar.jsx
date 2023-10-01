@@ -52,7 +52,7 @@ const RangeSliderBar = ({
           aria-label={["min", "max"]}
           defaultValue={[55000, 80000]}
           min={40000} // Set the minimum value
-          max={150000} //
+          max={150000}
           onChange={handleSliderChange}
           onBlur={onBlur}
         >
