@@ -119,36 +119,39 @@ const ContactForm = () => {
               )}
             </Box>
             <Flex flexDir={{ base: "column", md: "row" }} mb={5}>
-              <Button
-                color="#5045f0"
-                borderColor="#5045f0"
-                variant="outline"
-                onClick={onPrevClick}
-                disabled={currentStep == 1}
-                mr={4}
-                _hover={{
-                  bgColor: "#5045f0",
-                  color: "white",
-                }}
-                w={{ base: "100%", md: "30%", lg: "20%" }}
-              >
-                Prev
-              </Button>
-
-              <Button
-                color="#5045f0"
-                borderColor="#5045f0"
-                variant="outline"
-                onClick={onNextClick}
-                disabled={currentStep == 3}
-                _hover={{
-                  bgColor: "#5045f0",
-                  color: "white",
-                }}
-                w={{ base: "100%", md: "30%", lg: "20%" }}
-              >
-                Next
-              </Button>
+              {currentStep !== 1 && (
+                <Button
+                  color="#5045f0"
+                  borderColor="#5045f0"
+                  variant="outline"
+                  onClick={onPrevClick}
+                  disabled={currentStep == 1}
+                  mr={4}
+                  _hover={{
+                    bgColor: "#5045f0",
+                    color: "white",
+                  }}
+                  w={{ base: "100%", md: "30%", lg: "20%" }}
+                >
+                  Prev
+                </Button>
+              )}
+              {currentStep !== 3 && (
+                <Button
+                  color="#5045f0"
+                  borderColor="#5045f0"
+                  variant="outline"
+                  onClick={onNextClick}
+                  disabled={currentStep == 3}
+                  _hover={{
+                    bgColor: "#5045f0",
+                    color: "white",
+                  }}
+                  w={{ base: "100%", md: "30%", lg: "20%" }}
+                >
+                  Next
+                </Button>
+              )}
             </Flex>
             {/* ============== SUBMIT button ============== */}
             {currentStep === 3 && (
