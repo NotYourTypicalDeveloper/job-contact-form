@@ -19,7 +19,7 @@ const RangeSliderBar = ({
   dispatch,
   currValuesRange,
 }) => {
-  function handleSliderChangeEnd(newValues) {
+  function handleSliderChange(newValues) {
     const valuesRange = `£${newValues[0]} - £${newValues[1]}`;
     dispatch({
       type: "UPDATE_FIELD",
@@ -53,7 +53,7 @@ const RangeSliderBar = ({
           defaultValue={[55000, 80000]}
           min={40000} // Set the minimum value
           max={150000} //
-          onChangeEnd={handleSliderChangeEnd}
+          onChange={handleSliderChange}
           onBlur={onBlur}
         >
           <RangeSliderTrack>
