@@ -56,7 +56,7 @@ const ContactForm = () => {
       successMsg({
         title: "Message sent! ✨",
         status: "success",
-        duration: 2000,
+        duration: 5000,
         position: "top",
       });
       dispatch({
