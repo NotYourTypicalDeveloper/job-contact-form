@@ -74,7 +74,7 @@ const ContactForm = () => {
   return (
     <FormContext.Provider value={formState}>
       <FormDispatchContext.Provider value={dispatch}>
-        <Container maxW="container.md" pt={10}>
+        <Container maxW="container.md" pt={5}>
           <Heading
             as="h1"
             bgGradient="linear(to-l, #7928CA, #41d7ee)"
@@ -106,7 +106,7 @@ const ContactForm = () => {
             </Text>
           </Flex>
           <form style={{ padding: "2rem" }}>
-            <Box>
+            <Box my={{ base: 4, lg: 2 }}>
               {currentStep == 1 && (
                 <Page1 formState={formState} dispatch={dispatch} />
               )}
@@ -118,7 +118,7 @@ const ContactForm = () => {
                 <Page3 formState={formState} dispatch={dispatch} />
               )}
             </Box>
-            <Flex flexDir={{ base: "column", md: "row" }} mb={5}>
+            <Flex flexDir={{ base: "column", sm: "row" }} mb={5}>
               {currentStep !== 1 && (
                 <Button
                   color="#5045f0"
@@ -131,7 +131,9 @@ const ContactForm = () => {
                     bgColor: "#5045f0",
                     color: "white",
                   }}
-                  w={{ base: "100%", md: "30%", lg: "20%" }}
+                  _active={{ bgColor: "#717ae2" }}
+                  w={{ base: "100%", sm: "50%", md: "20%" }}
+                  mb={{ base: 3, lg: 0 }}
                 >
                   Prev
                 </Button>
@@ -147,7 +149,8 @@ const ContactForm = () => {
                     bgColor: "#5045f0",
                     color: "white",
                   }}
-                  w={{ base: "100%", md: "30%", lg: "20%" }}
+                  _active={{ bgColor: "#717ae2" }}
+                  w={{ base: "100%", sm: "50%", md: "20%" }}
                 >
                   Next
                 </Button>

@@ -7,7 +7,6 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 
-// TODO: add onBlur function
 const RadioButtons = ({
   radioLabel,
   inputName,
@@ -51,8 +50,6 @@ const RadioButtons = ({
           name={`${inputName}`}
           value={formState.values[inputName]}
           errorBorderColor="red.300"
-          // display="flex"
-          // flexDir={{ base: "column", lg: "row" }}
           display="grid"
           gridTemplateColumns={{
             base: "repeat(1, 1fr)",
