@@ -1,11 +1,5 @@
 import { React } from "react";
-import {
-  Checkbox,
-  FormLabel,
-  FormControl,
-  Grid,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import { Checkbox, FormLabel, FormControl, Grid } from "@chakra-ui/react";
 
 const CheckBoxes = ({
   checkboxGroupLabel,
