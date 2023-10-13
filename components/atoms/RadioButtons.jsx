@@ -51,7 +51,15 @@ const RadioButtons = ({
           name={`${inputName}`}
           value={formState.values[inputName]}
           errorBorderColor="red.300"
-          display="flex"
+          // display="flex"
+          // flexDir={{ base: "column", lg: "row" }}
+          display="grid"
+          gridTemplateColumns={{
+            base: "repeat(1, 1fr)",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+          }}
+          gap={3}
         >
           {radioButtonsElems}
         </RadioGroup>

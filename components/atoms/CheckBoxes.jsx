@@ -1,5 +1,11 @@
 import { React } from "react";
-import { Checkbox, FormLabel, FormControl, Grid } from "@chakra-ui/react";
+import {
+  Checkbox,
+  FormLabel,
+  FormControl,
+  Grid,
+  SimpleGrid,
+} from "@chakra-ui/react";
 
 const CheckBoxes = ({
   checkboxGroupLabel,
@@ -54,7 +60,14 @@ const CheckBoxes = ({
   return (
     <FormControl id={inputName} mb={5} isRequired={isRequired}>
       <FormLabel>{checkboxGroupLabel}</FormLabel>
-      <Grid templateColumns="repeat(3, 1fr)" gap={3}>
+      <Grid
+        gridTemplateColumns={{
+          base: "repeat(1, 1fr)",
+          md: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+        }}
+        gap={3}
+      >
         {checkboxElems}
       </Grid>
     </FormControl>
