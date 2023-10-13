@@ -87,7 +87,14 @@ const ContactForm = () => {
 
           {/* ============== Progress bar ============== */}
           <Flex justifyContent="center" alignItems="center">
-            <Box h={3} w="60%" bgColor="#717ae2" borderRadius={4} mr={2}>
+            <Box
+              h={3}
+              w="60%"
+              bgColor="#717ae2"
+              borderRadius={4}
+              mr={2}
+              zIndex={1}
+            >
               <Box
                 w={
                   currentStep == 1
