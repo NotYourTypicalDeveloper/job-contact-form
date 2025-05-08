@@ -32,10 +32,9 @@ const NumberInputComp = ({ inputName, inputLabel, inputValue, isRequired }) => {
   return (
     <FormControl id={inputName} mb={5} isRequired={isRequired}>
       <FormLabel>{inputLabel}</FormLabel>
-      <NumberInput step={5}>
+      <NumberInput value={inputValue} step={5}>
         <NumberInputField
           name={inputName}
-          value={inputValue}
           onBlur={onBlur}
           onChange={handleChange}
         />

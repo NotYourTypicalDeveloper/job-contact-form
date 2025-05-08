@@ -26,10 +26,11 @@ const Page3 = () => {
       <NumberInputComp
         inputName="workinghours"
         inputLabel="Number of work hours / week"
-        inputValue={Number(workinghours)}
+        inputValue={workinghours}
         isInvalid={isTouched.workinghours && workinghours === ""}
         isRequired
       />
+
       <RadioButtons
         radioLabel="Work style"
         inputName="workstyle"
