@@ -18,7 +18,6 @@ const Page3 = () => {
   const { workinghours, companysculture, recruitmentprocess } =
     formState.values;
 
-  console.log("working hours ==> ", typeof workinghours);
   const { isTouched } = formState;
   return (
     <Flex flexDir="column" justifyContent="space-evenly">

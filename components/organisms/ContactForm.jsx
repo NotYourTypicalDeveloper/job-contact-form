@@ -22,14 +22,42 @@ import Page3 from "../molecules/Page3.jsx";
 
 const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
-  const { currentStep, isLoading, values } = formState;
+  const { currentStep, isLoading, values, globalErrorMsg } = formState;
   const successMsg = useToast();
+
+  const LAST_STEP = 3;
+
+  const renderCurrentPage = () => {
+    switch (currentStep) {
+      case 1:
+        return <Page1 />;
+      case 2:
+        return <Page2 />;
+      case 3:
+        return <Page3 />;
+      default:
+        return null;
+    }
+  };
 
   // for Prev and Next button
   const goToStep = (e, type) => {
     e.preventDefault();
     dispatch({ type });
   };
+
+  const isSubmitDisabled = [
+    "sendername",
+    "company",
+    "email",
+    "message",
+    "contract",
+    "seniority",
+    "jobdescription",
+    "location",
+    "workstyle",
+    "recruitmentprocess",
+  ].some((key) => !values[key] || values[key] === "Move the slider");
 
   // Submit form
   const onSubmit = async () => {
@@ -76,7 +104,7 @@ const ContactForm = () => {
           >
             JOB CONTACT FORM
           </Heading>
-          <Text> {formState.globalErrorMsg}</Text>
+          {globalErrorMsg && <Text> {globalErrorMsg}</Text>}
 
           {/* ============== Progress bar ============== */}
           <Flex justifyContent="center" alignItems="center">
@@ -89,29 +117,19 @@ const ContactForm = () => {
               zIndex={1}
             >
               <Box
-                w={
-                  currentStep == 1
-                    ? "33.3%"
-                    : currentStep == 2
-                    ? "66.6%"
-                    : "100%"
-                }
+                w={`${(currentStep / LAST_STEP) * 100}%`}
                 h="100%"
                 bgColor="#2c1ef1"
                 borderRadius={4}
               ></Box>
             </Box>
             <Text fontWeight="extrabold" fontSize="small">
-              {currentStep} / 3
+              {currentStep} / {LAST_STEP}
             </Text>
           </Flex>
+          {/* ============== Form ============== */}
           <form style={{ padding: "2rem" }}>
-            <Box my={{ base: 4, lg: 2 }}>
-              {currentStep == 1 && <Page1 />}
-              {currentStep == 2 && <Page2 />}
-
-              {currentStep == 3 && <Page3 />}
-            </Box>
+            <Box my={{ base: 4, lg: 2 }}>{renderCurrentPage()}</Box>
             <Flex flexDir={{ base: "column", sm: "row" }} mb={5}>
               {currentStep !== 1 && (
                 <Button
@@ -132,7 +150,7 @@ const ContactForm = () => {
                   Prev
                 </Button>
               )}
-              {currentStep !== 3 && (
+              {currentStep !== LAST_STEP && (
                 <Button
                   color="#5045f0"
                   borderColor="#5045f0"
@@ -151,27 +169,14 @@ const ContactForm = () => {
               )}
             </Flex>
             {/* ============== SUBMIT button ============== */}
-            {currentStep === 3 && (
+            {currentStep === LAST_STEP && (
               <Button
                 w={{ base: "100%", md: "30%" }}
                 type="submit"
                 colorScheme="messenger"
                 isLoading={isLoading}
                 onClick={onSubmit}
-                isDisabled={
-                  !values.sendername ||
-                  !values.company ||
-                  !values.email ||
-                  !values.message ||
-                  !values.contract ||
-                  !values.seniority ||
-                  !values.jobdescription ||
-                  values.salary === "Move the slider" ||
-                  !values.location ||
-                  !values.workstyle ||
-                  !values.message ||
-                  !values.recruitmentprocess
-                }
+                isDisabled={isSubmitDisabled}
               >
                 Submit
               </Button>
