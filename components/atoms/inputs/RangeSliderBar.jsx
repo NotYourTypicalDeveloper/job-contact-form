@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useContext } from "react";
 import {
   Box,
   FormControl,
@@ -11,14 +11,16 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
+import { FormDispatchContext } from "../../../lib/context/FormContext.js";
 
 const RangeSliderBar = ({
   inputName,
   inputLabel,
   isRequired,
-  dispatch,
   currValuesRange,
 }) => {
+  const dispatch = useContext(FormDispatchContext);
+
   function handleSliderChange(newValues) {
     const valuesRange = `£${newValues[0]} - £${newValues[1]}`;
     dispatch({

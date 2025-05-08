@@ -1,14 +1,16 @@
-import { React } from "react";
-import { Checkbox, FormLabel, FormControl, Grid } from "@chakra-ui/react";
+import { Checkbox, FormControl, FormLabel, Grid } from "@chakra-ui/react";
+import { React, useContext } from "react";
+import { FormDispatchContext } from "../../../lib/context/FormContext.js";
 
 const CheckBoxes = ({
   checkboxGroupLabel,
   inputName,
   checkboxOptions,
   selectedValues,
-  dispatch,
   isRequired,
 }) => {
+  const dispatch = useContext(FormDispatchContext);
+
   const handleCheckboxChange = (e) => {
     if (e.target.checked) {
       dispatch({

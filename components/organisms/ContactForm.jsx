@@ -1,20 +1,19 @@
-import { React, useReducer } from "react";
 import {
-  Container,
-  Button,
-  useToast,
-  Flex,
   Box,
-  Text,
+  Button,
+  Container,
+  Flex,
   Heading,
+  Text,
+  useToast,
 } from "@chakra-ui/react";
+import { React, useReducer } from "react";
+import { sendContactForm } from "../../lib/api.js";
 import {
   FormContext,
   FormDispatchContext,
 } from "../../lib/context/FormContext.js";
-import { formReducer } from "../../lib/reducer/reducer.js";
-import { initialState } from "../../lib/reducer/reducer.js";
-import { sendContactForm } from "../../lib/api";
+import { formReducer, initialState } from "../../lib/reducer/formReducer.js";
 
 // Form Pages
 import Page1 from "../molecules/Page1.jsx";
@@ -25,7 +24,7 @@ const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
   const { currentStep, isLoading, values } = formState;
 
-  //for the success message pop-up
+  // //for the success message pop-up
   const successMsg = useToast();
 
   // User clicks "Prev"
@@ -38,7 +37,8 @@ const ContactForm = () => {
     e.preventDefault();
     dispatch({ type: "MOVE_NEXT_PAGE" });
   };
-  // ON SUBMIT
+
+  // Submit form
   const onSubmit = async () => {
     dispatch({
       type: "TOGGLE_ISLOADING",
@@ -114,16 +114,10 @@ const ContactForm = () => {
           </Flex>
           <form style={{ padding: "2rem" }}>
             <Box my={{ base: 4, lg: 2 }}>
-              {currentStep == 1 && (
-                <Page1 formState={formState} dispatch={dispatch} />
-              )}
-              {currentStep == 2 && (
-                <Page2 formState={formState} dispatch={dispatch} />
-              )}
+              {currentStep == 1 && <Page1 />}
+              {currentStep == 2 && <Page2 />}
 
-              {currentStep == 3 && (
-                <Page3 formState={formState} dispatch={dispatch} />
-              )}
+              {currentStep == 3 && <Page3 />}
             </Box>
             <Flex flexDir={{ base: "column", sm: "row" }} mb={5}>
               {currentStep !== 1 && (

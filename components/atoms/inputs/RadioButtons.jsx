@@ -1,21 +1,26 @@
-import { React } from "react";
 import {
   FormControl,
-  FormLabel,
-  RadioGroup,
-  Radio,
   FormErrorMessage,
+  FormLabel,
+  Radio,
+  RadioGroup,
 } from "@chakra-ui/react";
+import { React, useContext } from "react";
+import {
+  FormContext,
+  FormDispatchContext,
+} from "../../../lib/context/FormContext.js";
 
 const RadioButtons = ({
   radioLabel,
   inputName,
-  formState,
   radioOptions,
   isInvalid,
   isRequired,
-  dispatch,
 }) => {
+  const dispatch = useContext(FormDispatchContext);
+  const formState = useContext(FormContext);
+
   // Populating the radio buttons
   const radioButtonsElems = radioOptions.map((option) => {
     return (

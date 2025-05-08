@@ -1,18 +1,15 @@
-import { React } from "react";
 import {
-  Select,
+  FormControl,
   FormErrorMessage,
   FormLabel,
-  FormControl,
+  Select,
 } from "@chakra-ui/react";
+import { React, useContext } from "react";
+import { FormDispatchContext } from "../../../lib/context/FormContext.js";
 
-const DropdownMenu = ({
-  ddLabel,
-  inputName,
-  ddOptions,
-  dispatch,
-  isRequired,
-}) => {
+const DropdownMenu = ({ ddLabel, inputName, ddOptions, isRequired }) => {
+  const dispatch = useContext(FormDispatchContext);
+
   // Populating the sorting options
   const dropdownOptionsElems = ddOptions.map((option) => {
     return (

@@ -1,9 +1,11 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
-import SingleLineInput from "../atoms/SingleLineInput.jsx";
-import TextAreaInput from "../atoms/TextAreaInput.jsx";
+import React, { useContext } from "react";
+import { FormContext } from "../../lib/context/FormContext.js";
+import SingleLineInput from "../atoms/inputs/SingleLineInput.jsx";
+import TextAreaInput from "../atoms/inputs/TextAreaInput.jsx";
 
-const Page1 = ({ formState, dispatch }) => {
+const Page1 = () => {
+  const formState = useContext(FormContext);
   const { sendername, company, email, telephone, message } = formState.values;
   const { isTouched } = formState;
 
@@ -17,7 +19,6 @@ const Page1 = ({ formState, dispatch }) => {
         inputValue={sendername}
         isInvalid={isTouched.sendername && sendername === ""}
         isRequired={true}
-        dispatch={dispatch}
       />
       {/* ------- Company -------- */}
       <SingleLineInput
@@ -27,7 +28,6 @@ const Page1 = ({ formState, dispatch }) => {
         inputValue={company}
         isInvalid={isTouched.company && company === ""}
         isRequired={true}
-        dispatch={dispatch}
       />
       {/* ------- E-mail -------- */}
       <SingleLineInput
@@ -37,7 +37,6 @@ const Page1 = ({ formState, dispatch }) => {
         inputValue={email}
         isInvalid={isTouched.email && email === ""}
         isRequired={true}
-        dispatch={dispatch}
       />
       {/* ------- Tel -------- */}
       <SingleLineInput
@@ -47,8 +46,6 @@ const Page1 = ({ formState, dispatch }) => {
         inputValue={telephone}
         isInvalid={isTouched.telephone && telephone === ""}
         isRequired={true}
-        dispatch={dispatch}
-        formState={formState}
       />
       {/* ------- Message ------- */}
       <TextAreaInput
@@ -57,7 +54,6 @@ const Page1 = ({ formState, dispatch }) => {
         inputValue={message}
         isInvalid={isTouched.message && message === ""}
         isRequired={true}
-        dispatch={dispatch}
       />
     </Flex>
   );

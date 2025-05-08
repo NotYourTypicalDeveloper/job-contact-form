@@ -1,11 +1,12 @@
-import { React, useState } from "react";
 import {
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
-  FormErrorMessage,
   Text,
 } from "@chakra-ui/react";
+import { React, useContext, useState } from "react";
+import { FormDispatchContext } from "../../../lib/context/FormContext.js";
 
 const SingleLineInput = ({
   inputLabel,
@@ -14,8 +15,9 @@ const SingleLineInput = ({
   inputValue,
   isInvalid,
   isRequired,
-  dispatch,
 }) => {
+  const dispatch = useContext(FormDispatchContext);
+
   const [errorMsg, setErrorMsg] = useState("");
 
   const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;

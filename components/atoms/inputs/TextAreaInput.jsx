@@ -1,10 +1,11 @@
-import { React } from "react";
 import {
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Textarea,
-  FormErrorMessage,
 } from "@chakra-ui/react";
+import { React, useContext } from "react";
+import { FormDispatchContext } from "../../../lib/context/FormContext.js";
 
 const TextAreaInput = ({
   inputLabel,
@@ -12,9 +13,10 @@ const TextAreaInput = ({
   inputValue,
   isInvalid,
   isRequired,
-  dispatch,
   placeholder,
 }) => {
+  const dispatch = useContext(FormDispatchContext);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch({

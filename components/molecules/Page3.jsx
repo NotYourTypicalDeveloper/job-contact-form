@@ -1,8 +1,10 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
-import TextAreaInput from "../atoms/TextAreaInput.jsx";
-import NumberInputComp from "../atoms/NumberInputComp.jsx";
-import RadioButtons from "../atoms/RadioButtons.jsx";
+import { React, useContext } from "react";
+import { FormContext } from "../../lib/context/FormContext.js";
+
+import NumberInputComp from "../atoms/inputs/NumberInputComp.jsx";
+import RadioButtons from "../atoms/inputs/RadioButtons.jsx";
+import TextAreaInput from "../atoms/inputs/TextAreaInput.jsx";
 
 const WorkStyle_Options = [
   "fully remote",
@@ -11,10 +13,12 @@ const WorkStyle_Options = [
   "negotiable",
 ];
 
-const Page3 = ({ formState, dispatch }) => {
+const Page3 = () => {
+  const formState = useContext(FormContext);
   const { workinghours, companysculture, recruitmentprocess } =
     formState.values;
 
+  console.log("working hours ==> ", typeof workinghours);
   const { isTouched } = formState;
   return (
     <Flex flexDir="column" justifyContent="space-evenly">
@@ -22,18 +26,15 @@ const Page3 = ({ formState, dispatch }) => {
       <NumberInputComp
         inputName="workinghours"
         inputLabel="Number of work hours / week"
-        inputValue={workinghours}
+        inputValue={Number(workinghours)}
         isInvalid={isTouched.workinghours && workinghours === ""}
         isRequired
-        dispatch={dispatch}
       />
       <RadioButtons
         radioLabel="Work style"
         inputName="workstyle"
-        formState={formState}
         radioOptions={WorkStyle_Options}
-        isRequired={true}
-        dispatch={dispatch}
+        isRequired
       />
       {/* ------- Company's culture ------- */}
       <TextAreaInput
@@ -43,7 +44,6 @@ const Page3 = ({ formState, dispatch }) => {
         placeholder="Company's values, benefits, pros and cons"
         isInvalid={isTouched.companysculture && companysculture === ""}
         isRequired={true}
-        dispatch={dispatch}
       />
       {/* ------- Recruitment process ------- */}
       <TextAreaInput
@@ -53,7 +53,6 @@ const Page3 = ({ formState, dispatch }) => {
         inputValue={recruitmentprocess}
         isInvalid={isTouched.recruitmentprocess && recruitmentprocess === ""}
         isRequired={true}
-        dispatch={dispatch}
       />
     </Flex>
   );

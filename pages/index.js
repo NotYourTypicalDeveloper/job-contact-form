@@ -1,7 +1,7 @@
 import React from "react";
 import ContactForm from "../components/organisms/ContactForm";
-import Shape1 from "../components/atoms/Shape1.jsx";
-import Shape2 from "../components/atoms/Shape2.jsx";
+import Shape1 from "../components/atoms/graphics/Shape1.jsx";
+import Shape2 from "../components/atoms/graphics/Shape2.jsx";
 
 export default function Home() {
   return (

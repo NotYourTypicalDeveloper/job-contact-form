@@ -1,10 +1,11 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
-import RadioButtons from "../atoms/RadioButtons.jsx";
-import CheckBoxes from "../atoms/CheckBoxes.jsx";
-import TextAreaInput from "../atoms/TextAreaInput.jsx";
-import RangeSliderBar from "../atoms/RangeSliderBar.jsx";
-import SingleLineInput from "../atoms/SingleLineInput.jsx";
+import { React, useContext } from "react";
+import { FormContext } from "../../lib/context/FormContext.js";
+import CheckBoxes from "../atoms/inputs/CheckBoxes.jsx";
+import RadioButtons from "../atoms/inputs/RadioButtons.jsx";
+import RangeSliderBar from "../atoms/inputs/RangeSliderBar.jsx";
+import SingleLineInput from "../atoms/inputs/SingleLineInput.jsx";
+import TextAreaInput from "../atoms/inputs/TextAreaInput.jsx";
 
 // array of options for "Contract", "Seniority"
 const Contract_Options = ["Perm/Full-time", "Perm/Part-time", "Freelance"];
@@ -17,7 +18,9 @@ const Seniority_Options = [
   "We're open and flexible",
 ];
 
-const Page2 = ({ formState, dispatch }) => {
+const Page2 = () => {
+  const formState = useContext(FormContext);
+
   const { jobdescription, salary, location, seniority } = formState.values;
   const { isTouched } = formState;
 
@@ -27,17 +30,14 @@ const Page2 = ({ formState, dispatch }) => {
       <RadioButtons
         radioLabel="Contract Type"
         inputName="contract"
-        formState={formState}
         radioOptions={Contract_Options}
         isRequired={true}
-        dispatch={dispatch}
       />
       {/* ------- Seniority level ------- */}
       <CheckBoxes
         checkboxGroupLabel="Seniority level"
         inputName="seniority"
         checkboxOptions={Seniority_Options}
-        dispatch={dispatch}
         selectedValues={seniority}
         isRequired={true}
       />
@@ -49,7 +49,6 @@ const Page2 = ({ formState, dispatch }) => {
         inputValue={jobdescription}
         isInvalid={isTouched.jobdescription && jobdescription === ""}
         isRequired={true}
-        dispatch={dispatch}
       />
       {/* ------- Salary------- */}
       <RangeSliderBar
@@ -57,7 +56,6 @@ const Page2 = ({ formState, dispatch }) => {
         inputName="salary"
         isInvalid={isTouched.salary}
         isRequired={true}
-        dispatch={dispatch}
         currValuesRange={salary}
       />
       {/* ------- Location ------- */}
@@ -68,7 +66,6 @@ const Page2 = ({ formState, dispatch }) => {
         inputValue={location}
         isInvalid={isTouched.location && location === ""}
         isRequired={true}
-        dispatch={dispatch}
       />
     </Flex>
   );

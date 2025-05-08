@@ -1,22 +1,20 @@
-import React from "react";
 import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
 } from "@chakra-ui/react";
+import { React, useContext } from "react";
 
-const NumberInputComp = ({
-  inputName,
-  inputLabel,
-  inputValue,
-  isRequired,
-  dispatch,
-}) => {
+import { FormDispatchContext } from "../../../lib/context/FormContext.js";
+
+const NumberInputComp = ({ inputName, inputLabel, inputValue, isRequired }) => {
+  const dispatch = useContext(FormDispatchContext);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch({
