@@ -8,7 +8,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { React, useReducer } from "react";
-import { sendContactForm } from "../../lib/api.js";
+import { sendContactForm } from "../../lib/api/sendContactForm.js";
 import {
   FormContext,
   FormDispatchContext,
@@ -23,19 +23,12 @@ import Page3 from "../molecules/Page3.jsx";
 const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
   const { currentStep, isLoading, values } = formState;
-
-  // //for the success message pop-up
   const successMsg = useToast();
 
-  // User clicks "Prev"
-  const onPrevClick = (e) => {
+  // for Prev and Next button
+  const goToStep = (e, type) => {
     e.preventDefault();
-    dispatch({ type: "MOVE_PREV_PAGE" });
-  };
-  // User clicks "Next"
-  const onNextClick = (e) => {
-    e.preventDefault();
-    dispatch({ type: "MOVE_NEXT_PAGE" });
+    dispatch({ type });
   };
 
   // Submit form
@@ -125,7 +118,7 @@ const ContactForm = () => {
                   color="#5045f0"
                   borderColor="#5045f0"
                   variant="outline"
-                  onClick={onPrevClick}
+                  onClick={(e) => goToStep(e, "MOVE_PREV_PAGE")}
                   disabled={currentStep == 1}
                   mr={4}
                   _hover={{
@@ -144,7 +137,7 @@ const ContactForm = () => {
                   color="#5045f0"
                   borderColor="#5045f0"
                   variant="outline"
-                  onClick={onNextClick}
+                  onClick={(e) => goToStep(e, "MOVE_NEXT_PAGE")}
                   disabled={currentStep == 3}
                   _hover={{
                     bgColor: "#5045f0",
