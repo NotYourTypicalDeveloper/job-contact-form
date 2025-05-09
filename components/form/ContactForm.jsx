@@ -15,7 +15,6 @@ import {
 } from "../../lib/context/FormContext.js";
 import { formReducer, initialState } from "../../lib/reducer/formReducer.js";
 
-// Form Pages
 import StepButton from "../buttons/StepButton.jsx";
 import Page1 from "./Page1.jsx";
 import Page2 from "./Page2.jsx";
