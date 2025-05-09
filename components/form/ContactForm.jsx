@@ -16,9 +16,10 @@ import {
 import { formReducer, initialState } from "../../lib/reducer/formReducer.js";
 
 // Form Pages
-import Page1 from "../molecules/Page1.jsx";
-import Page2 from "../molecules/Page2.jsx";
-import Page3 from "../molecules/Page3.jsx";
+import StepButton from "../buttons/StepButton.jsx";
+import Page1 from "./Page1.jsx";
+import Page2 from "./Page2.jsx";
+import Page3 from "./Page3.jsx";
 
 const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
@@ -132,40 +133,19 @@ const ContactForm = () => {
             <Box my={{ base: 4, lg: 2 }}>{renderCurrentPage()}</Box>
             <Flex flexDir={{ base: "column", sm: "row" }} mb={5}>
               {currentStep !== 1 && (
-                <Button
-                  color="#5045f0"
-                  borderColor="#5045f0"
-                  variant="outline"
+                <StepButton
+                  label="Prev"
                   onClick={(e) => goToStep(e, "MOVE_PREV_PAGE")}
-                  disabled={currentStep == 1}
+                  isDisabled={currentStep === 1}
                   mr={4}
-                  _hover={{
-                    bgColor: "#5045f0",
-                    color: "white",
-                  }}
-                  _active={{ bgColor: "#717ae2" }}
-                  w={{ base: "100%", sm: "50%", md: "20%" }}
-                  mb={{ base: 3, lg: 0 }}
-                >
-                  Prev
-                </Button>
+                />
               )}
               {currentStep !== LAST_STEP && (
-                <Button
-                  color="#5045f0"
-                  borderColor="#5045f0"
-                  variant="outline"
+                <StepButton
+                  label="Next"
                   onClick={(e) => goToStep(e, "MOVE_NEXT_PAGE")}
-                  disabled={currentStep == 3}
-                  _hover={{
-                    bgColor: "#5045f0",
-                    color: "white",
-                  }}
-                  _active={{ bgColor: "#717ae2" }}
-                  w={{ base: "100%", sm: "50%", md: "20%" }}
-                >
-                  Next
-                </Button>
+                  isDisabled={currentStep === LAST_STEP}
+                />
               )}
             </Flex>
             {/* ============== SUBMIT button ============== */}

@@ -9,8 +9,7 @@ import {
   NumberInputStepper,
 } from "@chakra-ui/react";
 import { React, useContext } from "react";
-
-import { FormDispatchContext } from "../../../lib/context/FormContext.js";
+import { FormDispatchContext } from "../../lib/context/FormContext.js";
 
 const NumberInputComp = ({ inputName, inputLabel, inputValue, isRequired }) => {
   const dispatch = useContext(FormDispatchContext);

@@ -2,9 +2,9 @@ import { Flex } from "@chakra-ui/react";
 import { React, useContext } from "react";
 import { FormContext } from "../../lib/context/FormContext.js";
 
-import NumberInputComp from "../atoms/inputs/NumberInputComp.jsx";
-import RadioButtons from "../atoms/inputs/RadioButtons.jsx";
-import TextAreaInput from "../atoms/inputs/TextAreaInput.jsx";
+import NumberInputComp from "../inputs/NumberInputComp.jsx";
+import RadioButtons from "../inputs/RadioButtons.jsx";
+import TextAreaInput from "../inputs/TextAreaInput.jsx";
 
 const WorkStyle_Options = [
   "fully remote",

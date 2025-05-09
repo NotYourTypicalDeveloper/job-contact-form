@@ -9,7 +9,7 @@ import { React, useContext } from "react";
 import {
   FormContext,
   FormDispatchContext,
-} from "../../../lib/context/FormContext.js";
+} from "../../lib/context/FormContext.js";
 
 const RadioButtons = ({
   radioLabel,

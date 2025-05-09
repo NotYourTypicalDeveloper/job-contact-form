@@ -1,6 +1,7 @@
-import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-import AppContainer from "../components/AppContainer";
+import React from "react";
+
+import AppContainer from "../components/Hoc/AppContainer.jsx";
 import customTheme from "../config/theme";
 
 function MyApp({ Component, pageProps }) {

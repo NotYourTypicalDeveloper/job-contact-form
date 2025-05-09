@@ -6,7 +6,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { React, useContext, useState } from "react";
-import { FormDispatchContext } from "../../../lib/context/FormContext.js";
+import { FormDispatchContext } from "../../lib/context/FormContext.js";
 
 const SingleLineInput = ({
   inputLabel,

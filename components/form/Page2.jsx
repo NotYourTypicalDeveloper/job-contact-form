@@ -1,11 +1,11 @@
 import { Flex } from "@chakra-ui/react";
 import { React, useContext } from "react";
 import { FormContext } from "../../lib/context/FormContext.js";
-import CheckBoxes from "../atoms/inputs/CheckBoxes.jsx";
-import RadioButtons from "../atoms/inputs/RadioButtons.jsx";
-import RangeSliderBar from "../atoms/inputs/RangeSliderBar.jsx";
-import SingleLineInput from "../atoms/inputs/SingleLineInput.jsx";
-import TextAreaInput from "../atoms/inputs/TextAreaInput.jsx";
+import CheckBoxes from "../inputs/CheckBoxes.jsx";
+import RadioButtons from "../inputs/RadioButtons.jsx";
+import RangeSliderBar from "../inputs/RangeSliderBar.jsx";
+import SingleLineInput from "../inputs/SingleLineInput.jsx";
+import TextAreaInput from "../inputs/TextAreaInput.jsx";
 
 // array of options for "Contract", "Seniority"
 const Contract_Options = ["Perm/Full-time", "Perm/Part-time", "Freelance"];

@@ -1,17 +1,17 @@
-import { React, useContext } from "react";
 import {
   Box,
+  Flex,
   FormControl,
-  FormLabel,
   FormErrorMessage,
+  FormLabel,
   RangeSlider,
-  RangeSliderTrack,
   RangeSliderFilledTrack,
   RangeSliderThumb,
-  Flex,
+  RangeSliderTrack,
   Text,
 } from "@chakra-ui/react";
-import { FormDispatchContext } from "../../../lib/context/FormContext.js";
+import { React, useContext } from "react";
+import { FormDispatchContext } from "../../lib/context/FormContext.js";
 
 const RangeSliderBar = ({
   inputName,

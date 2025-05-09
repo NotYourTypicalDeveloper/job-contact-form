@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { FormContext } from "../../lib/context/FormContext.js";
-import SingleLineInput from "../atoms/inputs/SingleLineInput.jsx";
-import TextAreaInput from "../atoms/inputs/TextAreaInput.jsx";
+import SingleLineInput from "../inputs/SingleLineInput.jsx";
+import TextAreaInput from "../inputs/TextAreaInput.jsx";
 
 const Page1 = () => {
   const formState = useContext(FormContext);
