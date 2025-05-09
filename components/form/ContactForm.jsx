@@ -40,6 +40,8 @@ const ContactForm = () => {
     }
   };
 
+  const currentPage = renderCurrentPage();
+
   // for Prev and Next button
   const goToStep = (e, type) => {
     e.preventDefault();
@@ -86,7 +88,7 @@ const ContactForm = () => {
     } catch (error) {
       dispatch({
         type: "UPDATE_FORM_ERROR",
-        payload: `Oops something went wrong! ${error}`,
+        payload: `😬 Oops something went wrong! ${error}`,
       });
       console.log("error submitting form");
     }
@@ -129,7 +131,7 @@ const ContactForm = () => {
           </Flex>
           {/* ============== Form ============== */}
           <form style={{ padding: "2rem" }}>
-            <Box my={{ base: 4, lg: 2 }}>{renderCurrentPage()}</Box>
+            <Box my={{ base: 4, lg: 2 }}>{currentPage}</Box>
             <Flex flexDir={{ base: "column", sm: "row" }} mb={5}>
               {currentStep !== 1 && (
                 <StepButton
