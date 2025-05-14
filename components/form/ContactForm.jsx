@@ -16,6 +16,7 @@ import {
 import { formReducer, initialState } from "../../lib/reducer/formReducer.js";
 
 import StepButton from "../buttons/StepButton.jsx";
+import WhatsAppWidget from "../whatsapp/WhatsAppWidget.jsx";
 import Page1 from "./Page1.jsx";
 import Page2 from "./Page2.jsx";
 import Page3 from "./Page3.jsx";
@@ -24,7 +25,22 @@ const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
   const { currentStep, isLoading, values, globalErrorMsg } = formState;
   const successMsg = useToast();
-
+  const CONTACT_MESSAGE_FIELDS_2 = {
+    sendername: "Name",
+    company: "Company",
+    email: "Email",
+    telephone: "Telephone",
+    message: "Message",
+    contract: "Contract type",
+    seniority: "Seniority level",
+    jobdescription: "Job description",
+    salary: "Salary range",
+    location: "Location",
+    workinghours: "Number of Working hours",
+    workstyle: "Work style",
+    companysculture: "Company's culture",
+    recruitmentprocess: "Recruitment process",
+  };
   const LAST_STEP = 3;
 
   const renderCurrentPage = () => {
@@ -93,6 +109,17 @@ const ContactForm = () => {
       console.log("error submitting form");
     }
   };
+
+  const messageContent = Object.entries(values)
+    .map(
+      ([key, value]) =>
+        `${CONTACT_MESSAGE_FIELDS_2[key]}: ${
+          Array.isArray(value) ? value.join(", ") : value
+        }`
+    )
+    .join("\n");
+
+  console.log(messageContent);
 
   return (
     <FormContext.Provider value={formState}>
@@ -163,6 +190,8 @@ const ContactForm = () => {
               </Button>
             )}
           </form>
+
+          <WhatsAppWidget messageContent={messageContent} />
         </Container>
       </FormDispatchContext.Provider>
     </FormContext.Provider>
