@@ -7,7 +7,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { React, useReducer } from "react";
+import { useReducer } from "react";
 import { sendContactForm } from "../../lib/api/sendContactForm.js";
 import {
   FormContext,
@@ -25,22 +25,7 @@ const ContactForm = () => {
   const [formState, dispatch] = useReducer(formReducer, initialState);
   const { currentStep, isLoading, values, globalErrorMsg } = formState;
   const successMsg = useToast();
-  const CONTACT_MESSAGE_FIELDS_2 = {
-    sendername: "Name",
-    company: "Company",
-    email: "Email",
-    telephone: "Telephone",
-    message: "Message",
-    contract: "Contract type",
-    seniority: "Seniority level",
-    jobdescription: "Job description",
-    salary: "Salary range",
-    location: "Location",
-    workinghours: "Number of Working hours",
-    workstyle: "Work style",
-    companysculture: "Company's culture",
-    recruitmentprocess: "Recruitment process",
-  };
+
   const LAST_STEP = 3;
 
   const renderCurrentPage = () => {
@@ -75,7 +60,7 @@ const ContactForm = () => {
     "location",
     "workstyle",
     "recruitmentprocess",
-  ].some((key) => !values[key] || values[key] === "Move the slider");
+  ].some((key) => !values[key]);
 
   // Submit form
   const onSubmit = async () => {
@@ -109,17 +94,6 @@ const ContactForm = () => {
       console.log("error submitting form");
     }
   };
-
-  const messageContent = Object.entries(values)
-    .map(
-      ([key, value]) =>
-        `${CONTACT_MESSAGE_FIELDS_2[key]}: ${
-          Array.isArray(value) ? value.join(", ") : value
-        }`
-    )
-    .join("\n");
-
-  console.log(messageContent);
 
   return (
     <FormContext.Provider value={formState}>
@@ -191,7 +165,7 @@ const ContactForm = () => {
             )}
           </form>
 
-          <WhatsAppWidget messageContent={messageContent} />
+          <WhatsAppWidget formStateValues={formState.values} />
         </Container>
       </FormDispatchContext.Provider>
     </FormContext.Provider>

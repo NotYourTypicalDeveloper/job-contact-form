@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { FormContext } from "../../lib/context/FormContext.js";
 import SingleLineInput from "../inputs/SingleLineInput.jsx";
 import TextAreaInput from "../inputs/TextAreaInput.jsx";

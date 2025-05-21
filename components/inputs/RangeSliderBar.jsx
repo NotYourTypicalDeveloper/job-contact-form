@@ -10,7 +10,7 @@ import {
   RangeSliderTrack,
   Text,
 } from "@chakra-ui/react";
-import { React, useContext } from "react";
+import { useContext } from "react";
 import { FormDispatchContext } from "../../lib/context/FormContext.js";
 
 const RangeSliderBar = ({
@@ -45,7 +45,7 @@ const RangeSliderBar = ({
         <Flex alignItems="baseline">
           <FormLabel>{inputLabel}</FormLabel>
           <Text fontSize="sm" color="#828def">
-            {currValuesRange}
+            {currValuesRange || "Select salary range"}
           </Text>
         </Flex>
 
@@ -53,7 +53,7 @@ const RangeSliderBar = ({
           name={inputName}
           aria-label={["min", "max"]}
           defaultValue={[55000, 80000]}
-          min={40000} // Set the minimum value
+          min={40000}
           max={150000}
           onChange={handleSliderChange}
           onBlur={onBlur}

@@ -1,8 +1,6 @@
-import React from "react";
 import ContactForm from "../components/form/ContactForm.jsx";
 import Shape1 from "../components/graphics/Shape1.jsx";
 import Shape2 from "../components/graphics/Shape2.jsx";
-import WhatsAppWidget from "../components/whatsapp/WhatsAppWidget.jsx";
 
 export default function Home() {
   return (
