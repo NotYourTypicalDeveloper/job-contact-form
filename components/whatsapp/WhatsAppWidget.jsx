@@ -10,17 +10,18 @@ const pulse = keyframes`
 `;
 const pulseAnimation = `${pulse} 2s ease-in-out infinite`;
 
-const redirectUser = (newUrl) => {
-  window.location.href = newUrl;
+const redirectUser = (newUrl, newTab = true) => {
+  if (newTab) {
+    window.open(newUrl, "_blank");
+  } else {
+    window.location.href = newUrl;
+  }
 };
 
 const WhatsAppWidget = ({ formStateValues }) => {
-  const baseUrl = "https://api.whatsapp.com/send/";
+  const generateWhatsappURL = (prefix, recipientPhone) => {
+    const baseUrl = "https://api.whatsapp.com/send/";
 
-  const handleClick = () => {
-    const recipientPhone = process.env.NEXT_PUBLIC_PHONE_NUMBER;
-    const prefix =
-      "Hello, I have an exciting job opportunity for you. Details here: ";
     const message = Object.entries(formStateValues)
       .map(([key, value]) => {
         if (value) {
@@ -31,10 +32,16 @@ const WhatsAppWidget = ({ formStateValues }) => {
       })
       .join("\n");
 
-    const whatsappLink = `${baseUrl}?phone=${recipientPhone}&text=${
-      prefix + message
-    }&type=phone_number&app_absent=0`;
+    const encodedMsg = encodeURIComponent(prefix + message);
+    const whatsappLink = `${baseUrl}?phone=${recipientPhone}&text=${encodedMsg}&type=phone_number&app_absent=0`;
+    return whatsappLink;
+  };
 
+  const handleClick = () => {
+    const whatsappLink = generateWhatsappURL(
+      "Hello, I have an exciting job opportunity for you. Details here:\n",
+      process.env.NEXT_PUBLIC_PHONE_NUMBER
+    );
     redirectUser(whatsappLink);
   };
   return (
