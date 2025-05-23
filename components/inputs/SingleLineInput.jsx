@@ -21,14 +21,11 @@ const SingleLineInput = ({
   const [errorMsg, setErrorMsg] = useState("");
 
   const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+  const validateEmail = (email) => emailRegex.test(email);
 
-  function validateEmail(email) {
-    return emailRegex.test(email);
-  }
-  const regexTel = /^[0-9]+$/;
-  function validatePhone(number) {
-    return regexTel.test(number);
-  }
+  const phoneRegex = /^\(?\+?[\d(\-\s)]+$/;
+  const validatePhone = (number) => phoneRegex.test(number);
+
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     // if field is cleared, reset error message
@@ -38,20 +35,16 @@ const SingleLineInput = ({
     // if input is "telephone"
     if (type === "tel") {
       const isValidPhone = validatePhone(value);
-      if (!isValidPhone) {
-        setErrorMsg("please enter only numbers");
-      } else {
-        setErrorMsg("");
-      }
+      !isValidPhone
+        ? setErrorMsg("please enter only numbers")
+        : setErrorMsg("");
     }
+
     if (type === "email") {
       const isValidEmail = validateEmail(value);
-
-      if (!isValidEmail) {
-        setErrorMsg("Email format must include @, and a dot");
-      } else {
-        setErrorMsg("");
-      }
+      !isValidEmail
+        ? setErrorMsg("Email format must include @, and a dot")
+        : setErrorMsg("");
     }
 
     dispatch({
@@ -64,12 +57,9 @@ const SingleLineInput = ({
     const { name, type, value } = e.target;
     if (type === "email") {
       const isValidEmail = validateEmail(value);
-
-      if (!isValidEmail) {
-        setErrorMsg("Email format is wrong, must include @, and a dot");
-      } else {
-        setErrorMsg("");
-      }
+      !isValidEmail
+        ? setErrorMsg("Email format is wrong, must include @, and a dot")
+        : setErrorMsg("");
     }
 
     dispatch({

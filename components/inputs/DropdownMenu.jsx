@@ -20,10 +20,10 @@ const DropdownMenu = ({ ddLabel, inputName, ddOptions, isRequired }) => {
   });
 
   function handleChange(e) {
-    const eTargetValue = e.target.value;
+    const value = e.target;
     dispatch({
       type: "UPDATE_FIELD",
-      payload: { fieldName: inputName, newValue: eTargetValue },
+      payload: { fieldName: inputName, newValue: value },
     });
   }
 
