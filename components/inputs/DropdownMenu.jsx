@@ -4,7 +4,7 @@ import {
   FormLabel,
   Select,
 } from "@chakra-ui/react";
-import { React, useContext } from "react";
+import { useContext } from "react";
 import { FormDispatchContext } from "../../../lib/context/FormContext.js";
 
 const DropdownMenu = ({ ddLabel, inputName, ddOptions, isRequired }) => {

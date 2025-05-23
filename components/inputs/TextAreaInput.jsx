@@ -4,7 +4,7 @@ import {
   FormLabel,
   Textarea,
 } from "@chakra-ui/react";
-import { React, useContext } from "react";
+import { useContext } from "react";
 import { FormDispatchContext } from "../../lib/context/FormContext.js";
 
 const TextAreaInput = ({

@@ -5,7 +5,7 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import { React, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { FormDispatchContext } from "../../lib/context/FormContext.js";
 
 const SingleLineInput = ({

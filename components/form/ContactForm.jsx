@@ -27,6 +27,7 @@ const ContactForm = () => {
   const successMsg = useToast();
 
   const LAST_STEP = 3;
+  const IS_LAST_STEP = currentStep === LAST_STEP;
 
   const renderCurrentPage = () => {
     switch (currentStep) {
@@ -98,7 +99,7 @@ const ContactForm = () => {
   return (
     <FormContext.Provider value={formState}>
       <FormDispatchContext.Provider value={dispatch}>
-        <Container maxW="container.md" pt={5}>
+        <Container maxW="container.md">
           <Heading
             as="h1"
             bgGradient="linear(to-l, #7928CA, #41d7ee)"
@@ -133,7 +134,7 @@ const ContactForm = () => {
           {/* ============== Form ============== */}
           <form style={{ padding: "2rem" }}>
             <Box my={{ base: 4, lg: 2 }}>{currentPage}</Box>
-            <Flex flexDir={{ base: "column", sm: "row" }} mb={5}>
+            <Flex flexDir={{ base: "column", sm: "row" }} mb={{ lg: 5 }}>
               {currentStep !== 1 && (
                 <StepButton
                   label="Prev"
@@ -142,16 +143,16 @@ const ContactForm = () => {
                   mr={4}
                 />
               )}
-              {currentStep !== LAST_STEP && (
+              {!IS_LAST_STEP && (
                 <StepButton
                   label="Next"
                   onClick={(e) => goToStep(e, "MOVE_NEXT_PAGE")}
-                  isDisabled={currentStep === LAST_STEP}
+                  isDisabled={IS_LAST_STEP}
                 />
               )}
             </Flex>
             {/* ============== SUBMIT button ============== */}
-            {currentStep === LAST_STEP && (
+            {IS_LAST_STEP && (
               <Button
                 w={{ base: "100%", md: "30%" }}
                 type="submit"
@@ -164,8 +165,11 @@ const ContactForm = () => {
               </Button>
             )}
           </form>
-
-          <WhatsAppWidget formStateValues={formState.values} />
+          <Box mt={{ base: 5 }}>
+            {IS_LAST_STEP && (
+              <WhatsAppWidget formStateValues={formState.values} />
+            )}
+          </Box>
         </Container>
       </FormDispatchContext.Provider>
     </FormContext.Provider>

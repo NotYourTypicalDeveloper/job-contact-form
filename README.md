@@ -28,6 +28,7 @@
 - Submit button is greyed out until all the mandatory fields are filled out
 - Success message after successful submission of the form
 - Clears out form after successful submission
+- Whatsapp chat using whatsapp api
 
 ➕ Bonus features to add later:
 
@@ -36,19 +37,17 @@
 
 ## 📸 screenshots
 
-### \_\_\_Page 1 mobile view
+### \_\_\_Page 1 desktop view
 
-![Alt text](Screenshots/page1_mobile_view.png)
+![Alt text](Screenshots/page1_desktopview.png)
 
-### \_\_\_Page 1 desktop view, with validation
+### \_\_\_Page 3 mobile view
 
-![Alt text](Screenshots/page1_with_valid.png)
-![Alt text](Screenshots/page1_with_valid2.png)
+![Alt text](Screenshots/page3_mobileview.png)
 
-### \_\_\_Page 2 and 3 desktop view
+### \_\_\_Page 2 tablet view
 
-![Alt text](Screenshots/page2_desktop_view.png)
-![Alt text](Screenshots/page3_desktop_view.png)
+![Alt text](Screenshots/page2_tabletview.png)
 
 ### \_\_\_Success message
 
@@ -57,3 +56,7 @@
 ### \_\_\_Example of received email
 
 ![Alt text](Screenshots/email_example.png)
+
+### \_\_\_Example of generated whatsapp message
+
+![Alt text](Screenshots/whatsapp_message.png)

@@ -50,7 +50,7 @@ const WhatsAppWidget = ({ formStateValues }) => {
       as="button"
       position="absolute"
       right="30px"
-      bottom="30px"
+      bottom={{ base: "15px", lg: "30px" }}
       boxSize="50px"
       borderRadius="50%"
       animation={pulseAnimation}

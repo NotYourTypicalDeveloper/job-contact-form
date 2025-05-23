@@ -5,7 +5,7 @@ import {
   Radio,
   RadioGroup,
 } from "@chakra-ui/react";
-import { React, useContext } from "react";
+import { useContext } from "react";
 import {
   FormContext,
   FormDispatchContext,
