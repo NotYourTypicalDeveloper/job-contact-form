@@ -24,7 +24,10 @@ const WhatsAppWidget = ({ formStateValues }) => {
 
     const message = Object.entries(formStateValues)
       .map(([key, value]) => {
-        if (value) {
+        if (
+          (typeof value === "string" && value !== "") ||
+          (Array.isArray(value) && value.length > 0)
+        ) {
           return `${CONTACT_MESSAGE_FIELDS[key]}: ${
             Array.isArray(value) ? value.join(", ") : value
           }`;
