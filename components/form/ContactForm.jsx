@@ -154,7 +154,7 @@ const ContactForm = () => {
             {/* ============== SUBMIT button ============== */}
             {IS_LAST_STEP && (
               <Button
-                w={{ base: "100%", md: "30%" }}
+                w={{ base: "100%", sm: "50%", md: "30%" }}
                 type="submit"
                 colorScheme="messenger"
                 isLoading={isLoading}
@@ -166,9 +166,7 @@ const ContactForm = () => {
             )}
           </form>
           <Box mt={{ base: 5 }}>
-            {IS_LAST_STEP && (
-              <WhatsAppWidget formStateValues={formState.values} />
-            )}
+            <WhatsAppWidget formStateValues={formState.values} />
           </Box>
         </Container>
       </FormDispatchContext.Provider>

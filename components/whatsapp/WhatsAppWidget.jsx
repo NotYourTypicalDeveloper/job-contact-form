@@ -48,14 +48,14 @@ const WhatsAppWidget = ({ formStateValues }) => {
     <Box
       onClick={handleClick}
       as="button"
-      position="absolute"
-      right="30px"
-      bottom={{ base: "15px", lg: "30px" }}
-      boxSize="50px"
       borderRadius="50%"
       animation={pulseAnimation}
       bgColor="#54e956"
       boxShadow="1px 0px 15px 5px #7f8c81"
+      boxSize="50px"
+      position={{ base: "relative", md: "absolute" }}
+      right={{ md: "1rem" }}
+      bottom={{ md: "1rem" }}
     >
       <Image src={whatsapp_icon} alt="whatsapp" />
     </Box>
